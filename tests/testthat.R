@@ -1,4 +1,4 @@
 library(hySpc.testthat)
-library(hySpc.ggplot2)
+library(hySpc.chondro)
 
-test_check("hySpc.ggplot2")
+test_check("hySpc.chondro")
