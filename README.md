@@ -1,4 +1,5 @@
-# hyperSpec Package Skeleton
+# hySpc.chondro
+
 <!-- badges: start -->
 <!--
 [![CRAN
@@ -10,20 +11,4 @@ status](https://www.r-pkg.org/badges/version/SKELETON)](https://cran.r-project.o
 -->
 <!-- badges: end -->
 
-package skeleton for hyperSpec ecosystem
-
-When creating a repo, 
-
-- [ ] rename `hySpc.skeleton.Rproj` with new package name
-
-- replace `SKELETON` with new package name
-  - [ ] `LICENSE`
-  - [ ] `NEWS.md`
-  - [ ] `README.md`
-    - appveyor badge needs appveyor code
-  - [ ] `tests/testthat.R`
-  - [ ] `tests/testthat/test_attached.R`
-
-- create issue labels
-  - [ ] apply github labels (in `github-helpers/`), 
-  - [ ] delete `github-helpers/`
+Data package **hySpc.chondro** is a data package for the [**hyperSpec**](https://r-hyperspec.github.io/) and [**ggplot2**](https://ggplot2.tidyverse.org/) family.
