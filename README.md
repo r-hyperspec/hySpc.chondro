@@ -11,4 +11,4 @@ status](https://www.r-pkg.org/badges/version/SKELETON)](https://cran.r-project.o
 -->
 <!-- badges: end -->
 
-Data package **hySpc.chondro** is a data package for the [**hyperSpec**](https://r-hyperspec.github.io/) and [**ggplot2**](https://ggplot2.tidyverse.org/) family.
+Data package **hySpc.chondro** is a data package for the [**hyperSpec**](https://r-hyperspec.github.io/) family.
