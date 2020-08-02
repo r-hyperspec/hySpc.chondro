@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: fileio.aux
+The style file: unsrtnat.bst
+Database file #1: fileio-pkg.bib
+Database file #2: fileio.bib
+Warning--I didn't find a database entry for "HandbookofBasicAtomicSpectroscopicData"
+You've used 3 entries,
+            2481 wiz_defined-function locations,
+            574 strings with 4999 characters,
+and the built_in function-call counts, 892 in all, are:
+= -- 85
+> -- 22
+< -- 2
++ -- 12
+- -- 6
+* -- 60
+:= -- 139
+add.period$ -- 10
+call.type$ -- 3
+change.case$ -- 4
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 51
+empty$ -- 88
+format.name$ -- 10
+if$ -- 186
+int.to.chr$ -- 1
+int.to.str$ -- 4
+missing$ -- 1
+newline$ -- 24
+num.names$ -- 6
+pop$ -- 21
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 32
+swap$ -- 8
+text.length$ -- 0
+text.prefix$ -- 1
+top$ -- 0
+type$ -- 21
+warning$ -- 0
+while$ -- 6
+width$ -- 0
+write$ -- 46
+(There was 1 warning)

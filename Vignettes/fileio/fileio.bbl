@@ -1,0 +1,27 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[McDonald and Paul A.~Wilks(1988)]{McDonald1988}
+Robert~S. McDonald and Jr. Paul A.~Wilks.
+\newblock Jcamp-dx: A standard form for the exchange of infrared spectra in
+  computer readable form.
+\newblock \emph{Applied Spectroscopy}, 42\penalty0 (1):\penalty0 151--162,
+  1988.
+
+\bibitem[Bengtsson(2018)]{R.matlab}
+Henrik Bengtsson.
+\newblock \emph{R.matlab: Read and Write MAT Files and Call MATLAB from Within
+  R}, 2018.
+\newblock URL \url{https://CRAN.R-project.org/package=R.matlab}.
+\newblock R package version 3.6.2.
+
+\bibitem[{Gal}(1997)]{Galactic1997}
+\emph{Universal Data Format Specification}.
+\newblock {Galactic Industries Corp.}, 1997.
+\newblock URL \url{http://ftirsearch.com/features/converters/gspc_udf.zip}.
+
+\end{thebibliography}
