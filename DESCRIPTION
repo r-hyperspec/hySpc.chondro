@@ -25,7 +25,6 @@ Suggests:
     covr,
     knitr,
     sessioninfo,
-    vdiffr
 URL:
     https://github.com/r-hyperspec/hySpc.chondro
 BugReports: https://github.com/r-hyperspec/hySpc.chondro/issues
