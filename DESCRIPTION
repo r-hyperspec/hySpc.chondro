@@ -2,7 +2,7 @@ Package: hySpc.chondro
 Type: Package
 Version: 0.0.0.9000
 Title: Data package hySpc.chondro is a data package for the hyperSpec family.
-Description: chondro interface
+Description: chondro interface.
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut"), email = "Claudia.Beleites@chemometrix.gmbh"),
     person("Erick",     "Oduniyi", role = c("aut","cre"), email = "eeoduniyi@gmail.com"),
@@ -13,10 +13,9 @@ Encoding: UTF-8
 LazyLoad: yes
 LazyData: yes
 Remotes:
-
 Depends:
     hyperSpec
-Imports: 
+Imports:
     hySpc.testthat,
     lazyeval,
     methods,
@@ -27,7 +26,7 @@ Suggests:
     knitr,
     sessioninfo,
     vdiffr
-URL: 
+URL:
     https://github.com/r-hyperspec/hySpc.chondro
 BugReports: https://github.com/r-hyperspec/hySpc.chondro/issues
 VignetteBuilder: knitr
