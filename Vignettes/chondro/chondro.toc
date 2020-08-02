@@ -1,0 +1,15 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}The Data Set}{2}{section.2}%
+\contentsline {section}{\numberline {3}Data Import}{3}{section.3}%
+\contentsline {section}{\numberline {4}Preprocessing}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Aligning the Spatial Grid}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Spectral Smoothing}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Baseline Correction}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Normalization}{5}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Subtracting the Overall Composition}{6}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Outlier Removal by Principal Component Analysis (PCA)}{6}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Hierarchical Cluster Analysis (HCA)}{7}{section.5}%
+\contentsline {section}{\numberline {6}Plotting a False-Colour Map of Certain Spectral Regions}{8}{section.6}%
+\contentsline {section}{\numberline {7}Smoothed False-Colour Maps and Interpolation}{9}{section.7}%
+\contentsline {section}{\numberline {8}Saving the data set}{10}{section.8}%
