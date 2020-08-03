@@ -10,4 +10,5 @@
 ^docs
 ^docs$
 ^github-helpers$
+^inst/extdata/chondro\.gz$
 ^pkgdown$
