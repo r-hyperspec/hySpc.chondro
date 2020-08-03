@@ -1,9 +1,0 @@
-This is makeindex, version 2.15 [TeX Live 2019] (kpathsea + Thai support).
-Scanning input file fileio.idx....
-!! Input index error (file = fileio.idx, line = 27):
-   -- Extra `!' at position 32 of first argument.
-done (151 entries accepted, 1 rejected).
-Sorting entries....done (1128 comparisons).
-Generating output file fileio.ind....done (213 lines written, 0 warnings).
-Output written in fileio.ind.
-Transcript written in fileio.ilg.
