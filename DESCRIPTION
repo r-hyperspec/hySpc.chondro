@@ -26,9 +26,13 @@ Imports:
     methods,
     rlang
 Suggests:
+    akima,
     bookdown,
     covr,
+    ggplotify,
+    ggpubr,
     knitr,
+    latticeExtra,
     sessioninfo,
 URL:
     https://github.com/r-hyperspec/hySpc.chondro
