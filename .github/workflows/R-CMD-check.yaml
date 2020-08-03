@@ -123,6 +123,6 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-      - name: Test coverage & upload report to Codecov
-        run: covr::codecov()
-        shell: Rscript {0}
+      # - name: Test coverage & upload report to Codecov
+      #   run: covr::codecov()
+      #   shell: Rscript {0}
