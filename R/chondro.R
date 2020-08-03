@@ -1,4 +1,4 @@
-#' Raman spectra of 2 Chondrocytes in Cartilage.
+#' Raman spectra of 2 Chondrocytes in Cartilage
 #'
 #' A Raman-map (laterally resolved Raman spectra) of chondrocytes in cartilage.
 #'
@@ -15,8 +15,6 @@
 #' @concept datasets
 #' @references The raw data is available at <http://hyperspec.r-forge.r-project.org/blob/chondro.zip>
 #' @examples
-#'
-#'
 #' chondro
 #'
 #' ## do baseline correction
