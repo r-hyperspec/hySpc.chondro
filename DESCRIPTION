@@ -1,8 +1,11 @@
 Package: hySpc.chondro
 Type: Package
 Version: 0.0.0.9000
-Title: Data package hySpc.chondro is a data package for the hyperSpec family.
-Description: chondro interface.
+Title: Raman Scattering Spectra of a Cartilage Section Measured on Each Point of a Grid
+Description: Package **hySpc.chondro** is a part of 'hyperSpec' family packages
+    (https://r-hyperspec.github.io/). It contains 'chondro' dataset, which is 
+    so-called 'Raman map': Raman scattering spectra of a cartilage section
+    measured on each point of a grid. 
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut"), email = "Claudia.Beleites@chemometrix.gmbh"),
     person("Erick",     "Oduniyi",   role = c("aut", "cre"), email = "eeoduniyi@gmail.com"),
