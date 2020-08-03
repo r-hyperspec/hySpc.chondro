@@ -14,6 +14,7 @@
 # R package **hySpc.chondro**
 
 Package **hySpc.chondro** is a part of [**hyperSpec**](https://r-hyperspec.github.io/) family packages.
-It contains `chondro`[^1] dataset, which is so-called _Raman map_: [Raman scattering spectra](https://en.wikipedia.org/wiki/Raman_spectroscopy) of a cartilage section measured on each point of a grid. 
+It contains `chondro`¹  dataset, which is so-called _Raman map_: [Raman scattering spectra](https://en.wikipedia.org/wiki/Raman_spectroscopy) of a cartilage section measured on each point of a grid. 
 
-[^1]: Word `chondro` is based on word ["chondrocytes"](https://en.wikipedia.org/wiki/Chondrocyte), cells found in cartilage.
+
+¹ Word `chondro` is based on word ["chondrocytes"](https://en.wikipedia.org/wiki/Chondrocyte), cells found in cartilage.
