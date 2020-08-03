@@ -6,6 +6,7 @@
 ^appveyor\.yml$
 ^codecov\.yml$
 ^CONTRIBUTING\.md$
+^data-raw$
 ^docs
 ^docs$
 ^github-helpers$
