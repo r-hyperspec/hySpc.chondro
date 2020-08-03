@@ -14,8 +14,8 @@ LazyLoad: yes
 LazyData: yes
 Remotes:
 Depends:
-    hyperSpec
 Imports:
+    hyperSpec,
     hySpc.testthat,
     lazyeval,
     methods,
