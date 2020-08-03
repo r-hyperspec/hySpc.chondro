@@ -6,8 +6,10 @@
 ^appveyor\.yml$
 ^codecov\.yml$
 ^CONTRIBUTING\.md$
+^data-raw$
 ^docs
 ^docs$
 ^github-helpers$
+^inst/extdata/chondro\.gz$
 ^pkgdown$
 ^Vignettes-Rnw$
