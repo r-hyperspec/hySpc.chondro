@@ -16,7 +16,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyLoad: yes
 LazyData: yes
-Remotes:
+Additional_repositories: 
+    https://r-hyperspec.github.io/hySpc.pkgs/
 Depends:
     R (>= 3.6.0)
 Imports:
