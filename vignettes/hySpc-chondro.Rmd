@@ -181,11 +181,12 @@ The measurement parameters were:
 
 # Data Import
 
-Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file. Raman maps are exported having four columns, *y*, *x*, *raman shift*, and *intensity*.
-Package **hyperSpec** comes with a function to import such files, `read.txt.Renishaw()`{.r}.
+Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file.
+Raman maps are exported having four columns, *y*, *x*, *raman shift*, and *intensity*.
+Package **hySpc.read.txt** comes with a function to import such files, `hySpc.read.txt::read_txt_Renishaw()`{.r}.
 The function assumes a map as default, but can also handle single spectra (`data = "spc"`{.r}), time series (`data = "ts"`{.r}), and depth profiles (`data = "depth"`{.r}).
 In addition, large files may be processed in chunks.
-In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
+In order to speed up the reading `read_txt_Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
 
 ```{r chondro-import, cache=TRUE}
 # Download file from:
@@ -195,7 +196,7 @@ dir.create('rawdata', showWarnings = FALSE)
 download.file(raw_data_url, 'rawdata/chondro.gz')
 
 # Read the raw data and make a hyperSpec object
-chondro <- read.txt.Renishaw("rawdata/chondro.gz", data = "xyspc")
+chondro <- hySpc.read.txt::read_txt_Renishaw("rawdata/chondro.gz", data = "xyspc")
 chondro
 ```
 
