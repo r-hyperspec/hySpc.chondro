@@ -8,7 +8,7 @@ library(usethis)
 
 # Read the raw data ----------------------------------------------------------
 # Working directory should be package's directory that contains file "DESCRIPTION"
-chondro_0 <- read.txt.Renishaw("inst/extdata/chondro.gz", data = "xyspc")
+chondro_0 <- hySpc.read.txt::read_txt_Renishaw("inst/extdata/chondro.gz", data = "xyspc")
 
 # Disturb a few points -------------------------------------------------------
 chondro_0$x[500] <- chondro_0$x[500] + rnorm(1, sd = 0.01)
