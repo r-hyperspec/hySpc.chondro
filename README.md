@@ -1,14 +1,20 @@
-# hySpc.chondro
 
 <!-- badges: start -->
-<!--
-[![CRAN
-status](https://www.r-pkg.org/badges/version/SKELETON)](https://cran.r-project.org/package=SKELETON)
-[![Build Status on Travis](https://travis-ci.com/r-hyperspec/SKELETON.svg?branch=master) (master; Linux, Mac))](https://travis-ci.com/github/r-hyperspec/SKELETON)
-[![Build status on Appveyor](https://ci.appveyor.com/api/projects/status/APPVEYOR-CODE?svg=true) (Windows)](https://ci.appveyor.com/project/r-hyperspec/SKELETON)
+[![CRAN status](https://www.r-pkg.org/badges/version/hySpc.chondro)](https://cran.r-project.org/package=hySpc.chondro)
+[![R build status](https://github.com/r-hyperspec/hySpc.chondro/workflows/R-CMD-check/badge.svg)](https://github.com/r-hyperspec/hySpc.chondro/actions)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![Codecov test coverage](https://codecov.io/gh/r-hyperspec/SKELETON/branch/master/graph/badge.svg) (master)](https://codecov.io/gh/r-hyperspec/SKELETON?branch=master)
+<!--
+[![Build Status on Travis](https://travis-ci.com/r-hyperspec/hySpc.chondro.svg?branch=develop) (develop; Linux, Mac))](https://travis-ci.com/github/r-hyperspec/hySpc.chondro)
+[![Build status on Appveyor](https://ci.appveyor.com/api/projects/status/APPVEYOR-CODE?svg=true) (Windows)](https://ci.appveyor.com/project/r-hyperspec/hySpc.chondro)
+[![Codecov test coverage](https://codecov.io/gh/r-hyperspec/hySpc.chondro/branch/develop/graph/badge.svg) (develop)](https://codecov.io/gh/r-hyperspec/hySpc.chondro?branch=develop)
 -->
 <!-- badges: end -->
 
-Data package **hySpc.chondro** is a data package for the [**hyperSpec**](https://r-hyperspec.github.io/) family.
+
+# R package **hySpc.chondro**
+
+Package **hySpc.chondro** is a part of [**hyperSpec**](https://r-hyperspec.github.io/) family packages.
+It contains `chondro`¹  dataset, which is so-called _Raman map_: [Raman scattering spectra](https://en.wikipedia.org/wiki/Raman_spectroscopy) of a cartilage section measured on each point of a grid. 
+
+
+¹ Word `chondro` is based on word ["chondrocytes"](https://en.wikipedia.org/wiki/Chondrocyte), cells found in cartilage.
