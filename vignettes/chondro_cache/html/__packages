@@ -1,0 +1,17 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+hySpc.chondro
+lattice
+grid
+ggplot2
+xml2
+hyperSpec
+latticeExtra
+akima
+ggplotify
+ggpubr
