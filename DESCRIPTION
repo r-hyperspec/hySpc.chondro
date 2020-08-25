@@ -1,29 +1,44 @@
 Package: hySpc.chondro
 Type: Package
 Version: 0.0.0.9000
-Title: Package's Title
-Description: Short Description of the package.
+Title: Raman Scattering Spectra of a Cartilage Section Measured on Each Point of a Grid
+Description: Package **hySpc.chondro** is a part of 'hyperSpec' family packages
+    (https://r-hyperspec.github.io/). It contains 'chondro' dataset, which is 
+    so-called 'Raman map': Raman scattering spectra of a cartilage section
+    measured on each point of a grid. 
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut"), email = "Claudia.Beleites@chemometrix.gmbh"),
-    person("Erick",     "Oduniyi", role = c("aut","cre"), email = "eeoduniyi@gmail.com"),
-    person("Vilmantas", "Gegzna", role = c("aut")),
-    person("Bryan",     "Hanson", role = c("aut"))
+    person("Erick",     "Oduniyi",   role = c("aut", "cre"), email = "eeoduniyi@gmail.com"),
+    person("Vilmantas", "Gegzna",    role = c("aut")),
+    person("Alois",     "Bonifacio", role = c("ctb", "dtc"))
     )
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyLoad: yes
 LazyData: yes
-Remotes:
-    r-hyperspec/hySpc.testthat
+Additional_repositories: 
+    https://r-hyperspec.github.io/hySpc.pkgs/
 Depends:
-    hyperSpec
-Imports: 
-    hySpc.testthat
+    R (>= 3.6.0)
+Imports:
+    hyperSpec,
+    hySpc.testthat,
+    lazyeval,
+    methods,
+    rlang
 Suggests:
+    akima,
+    bookdown,
+    covr,
+    ggplotify,
+    ggpubr,
+    hySpc.read.txt,
     knitr,
-    covr
-URL: 
-    https://github.com/r-hyperspec/hySpc.skeleton
-BugReports: https://github.com/r-hyperspec/hySpc.skeleton/issues
+    latticeExtra,
+    sessioninfo,
+URL:
+    https://github.com/r-hyperspec/hySpc.chondro
+BugReports: https://github.com/r-hyperspec/hySpc.chondro/issues
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
