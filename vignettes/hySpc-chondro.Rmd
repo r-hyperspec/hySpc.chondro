@@ -141,7 +141,7 @@ as well as other basic work techniques:
 -  plotting false color maps,
 -  cutting the spectral range,
 -  selecting (extracting) or deleting spectra, and
--  *aggregating* spectra (e.g. calculating cluster mean spectra).
+-  *aggregating* spectra (e.g., calculating cluster mean spectra).
 
 
 The chemometric methods used are:
