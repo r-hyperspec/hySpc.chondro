@@ -5,9 +5,9 @@ bookdown_titles: |
   # (PART\*) II Case studies {-}
   # `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
 # For vignette ---------------------------------------------------------------
-title:       Raman Spectra of Chondrocytes in Cartilage
-subtitle:    "Example Workflow for 2D Raman Spectra Dataset `chondro`"
-description: "chondro: Example workflow for 2D Raman spectra dataset `chondro`."
+title:       'Raman Spectra of Chondrocytes in Cartilage'
+subtitle:    'Example Workflow for 2D Raman Spectra Dataset `chondro`'
+description: 'chondro: Example workflow for 2D Raman spectra dataset `chondro`.'
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
