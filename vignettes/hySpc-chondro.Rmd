@@ -5,9 +5,9 @@ bookdown_titles: |
   # (PART\*) II Case studies {-}
   # `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
 # For vignette ---------------------------------------------------------------
-title:       Raman Spectra of Chondrocytes in Cartilage
-subtitle:    "Example Workflow for 2D Raman Spectra Dataset `chondro`"
-description: "chondro: Example workflow for 2D Raman spectra dataset `chondro`."
+title:       'Raman Spectra of Chondrocytes in Cartilage'
+subtitle:    'Example Workflow for 2D Raman Spectra Dataset `chondro`'
+description: 'chondro: Example workflow for 2D Raman spectra dataset `chondro`.'
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
@@ -26,6 +26,7 @@ output:
       base_format: rmarkdown::html_vignette
       toc: yes
       fig_caption: yes
+      number_sections: true
       css:
         - vignette.css
         - style.css
@@ -140,7 +141,7 @@ as well as other basic work techniques:
 -  plotting false color maps,
 -  cutting the spectral range,
 -  selecting (extracting) or deleting spectra, and
--  *aggregating* spectra (e.g. calculating cluster mean spectra).
+-  *aggregating* spectra (e.g., calculating cluster mean spectra).
 
 
 The chemometric methods used are:
