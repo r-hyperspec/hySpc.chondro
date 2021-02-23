@@ -4,8 +4,6 @@
 [![R build status](https://github.com/r-hyperspec/hySpc.chondro/workflows/R-CMD-check/badge.svg)](https://github.com/r-hyperspec/hySpc.chondro/actions)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!--
-[![Build Status on Travis](https://travis-ci.com/r-hyperspec/hySpc.chondro.svg?branch=develop) (develop; Linux, Mac))](https://travis-ci.com/github/r-hyperspec/hySpc.chondro)
-[![Build status on Appveyor](https://ci.appveyor.com/api/projects/status/APPVEYOR-CODE?svg=true) (Windows)](https://ci.appveyor.com/project/r-hyperspec/hySpc.chondro)
 [![Codecov test coverage](https://codecov.io/gh/r-hyperspec/hySpc.chondro/branch/develop/graph/badge.svg) (develop)](https://codecov.io/gh/r-hyperspec/hySpc.chondro?branch=develop)
 -->
 <!-- badges: end -->
