@@ -373,12 +373,12 @@ Has something changed in R or **hyperSpec**?
 As the overview shows that the spectra contain `NA`{.r}s (from cosmic spike removal that was done previously), the first step is to remove these.
 Also, the wavelength axis of the raw spectra is not evenly spaced (the data points are between `r signif(min(diff(wl(chondro))), 2)` and `r signif(max(diff(wl(chondro))), 2)` $cm^{-1}$ apart from each other).
 Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
-All three of these issues are tackled by interpolating and smoothing of the wavelength axis by `spc.loess()`{.r}.
+All three of these issues are tackled by interpolating and smoothing of the wavelength axis by `spc_loess()`{.r}.
 The resolution is to be reduced to 8 $cm^{-1}$, or 4 $cm^{-1}$ data point spacing.
 
 
 ```{r interp}
-chondro <- spc.loess(chondro, seq(602, 1800, 4))
+chondro <- spc_loess(chondro, seq(602, 1800, 4))
 chondro
 ```
 
@@ -394,11 +394,11 @@ spectra_to_save <- chondro
 
 ## Baseline Correction
 
-The next step is a linear baseline correction. `spc.fit.poly.below()`{.r} tries to automatically find appropriate support points for polynomial baselines.
+The next step is a linear baseline correction. `spc_fit_poly_below()`{.r} tries to automatically find appropriate support points for polynomial baselines.
 The default is a linear baseline, which is appropriate in our case:
 
 ```{r bl}
-baselines <- spc.fit.poly.below(chondro)
+baselines <- spc_fit_poly_below(chondro)
 chondro <- chondro - baselines
 ```
 

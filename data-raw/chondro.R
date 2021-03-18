@@ -8,7 +8,8 @@ library(usethis)
 
 # Read the raw data ----------------------------------------------------------
 # Working directory should be package's directory that contains file "DESCRIPTION"
-chondro_0 <- hySpc.read.txt::read_txt_Renishaw("inst/extdata/chondro.gz", data = "xyspc")
+chondro_0 <-
+  hySpc.read.txt::read_txt_Renishaw("inst/extdata/chondro.gz", data = "xyspc")
 
 # Disturb a few points -------------------------------------------------------
 chondro_0$x[500] <- chondro_0$x[500] + rnorm(1, sd = 0.01)
@@ -18,10 +19,10 @@ chondro_0$y[660] <- chondro_0$y[660] + rnorm(1, sd = 0.01)
 chondro_0$x <- fitraster(chondro_0$x)$x
 chondro_0$y <- fitraster(chondro_0$y)$x
 
-chondro_0 <- spc.loess(chondro_0, seq(602, 1800, 4))
+chondro_0 <- spc_loess(chondro_0, seq(602, 1800, 4))
 spectra_to_save <- chondro_0
 
-baselines <- spc.fit.poly.below(chondro_0)
+baselines <- spc_fit_poly_below(chondro_0)
 chondro_0 <- chondro_0 - baselines
 
 chondro_0 <- chondro_0 / rowMeans(chondro_0)
