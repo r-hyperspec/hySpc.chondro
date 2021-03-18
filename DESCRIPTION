@@ -36,6 +36,7 @@ Suggests:
     knitr,
     latticeExtra,
     sessioninfo,
+    styler
 URL:
     https://github.com/r-hyperspec/hySpc.chondro
 BugReports: https://github.com/r-hyperspec/hySpc.chondro/issues
