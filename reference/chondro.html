@@ -82,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -99,7 +99,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-hyperspec/hySpc.chondro/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -144,7 +144,7 @@ in the range of ca. 600 - 1800 cm\(^{-1}\).</p>
     <p>A. Bonifacio and C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>chondro</span>
+    <pre class="examples"><div class='input'><span class='va'>chondro</span>
 </div><div class='output co'>#&gt; <span class='message'>Loading required package: hyperSpec</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: lattice</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>Package hyperSpec (version 0.100.0)</span>
@@ -16990,26 +16990,27 @@ in the range of ca. 600 - 1800 cm\(^{-1}\).</p>
 #&gt; data frame with 0 columns and 0 rows
 #&gt; </div><div class='input'>
 <span class='co'>## do baseline correction</span>
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span>)
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='kw'>baselines</span>
+<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>chondro</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly.below' is deprecated. </span>
+#&gt; <span class='warning'>Use function 'spc_fit_poly_below' instead.</span></div><div class='input'><span class='va'>chondro</span> <span class='op'>&lt;-</span> <span class='va'>chondro</span> <span class='op'>-</span> <span class='va'>baselines</span>
 
 <span class='co'>## area normalization</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>chondro</span>)
+<span class='va'>chondro</span> <span class='op'>&lt;-</span> <span class='va'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>chondro</span><span class='op'>)</span>
 
 <span class='co'>## substact common composition</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
+<span class='va'>chondro</span> <span class='op'>&lt;-</span> <span class='va'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>chondro</span>, <span class='fl'>0.05</span><span class='op'>)</span>
 
-<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span>)
-<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>cols</span>)
-</div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>, col = <span class='kw'>cols</span>)
+<span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span><span class='op'>)</span>
+<span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>chondro</span>, <span class='va'>clusters</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>, col.regions <span class='op'>=</span> <span class='va'>cols</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='va'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>chondro</span>, <span class='va'>chondro</span><span class='op'>$</span><span class='va'>clusters</span>, <span class='va'>mean_pm_sd</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>cluster.means</span>, stacked <span class='op'>=</span> <span class='st'>".aggregate"</span>, fill <span class='op'>=</span> <span class='st'>".aggregate"</span>, col <span class='op'>=</span> <span class='va'>cols</span><span class='op'>)</span>
 </div><div class='img'><img src='chondro-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## plot nucleic acid bands</span>
-<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span>)],
-  col.regions = <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span>), space = <span class='st'>"Lab"</span>)(<span class='fl'>20</span>)
-)
-</div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>chondro</span><span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span><span class='op'>)</span><span class='op'>]</span>,
+  col.regions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span><span class='op'>)</span>, space <span class='op'>=</span> <span class='st'>"Lab"</span><span class='op'>)</span><span class='op'>(</span><span class='fl'>20</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -17025,7 +17026,7 @@ in the range of ca. 600 - 1800 cm\(^{-1}\).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
