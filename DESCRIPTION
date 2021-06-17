@@ -3,9 +3,9 @@ Type: Package
 Version: 0.0.0.9000
 Title: Raman Scattering Spectra of a Cartilage Section Measured on Each Point of a Grid
 Description: Package **hySpc.chondro** is a part of 'hyperSpec' family packages
-    (https://r-hyperspec.github.io/). It contains 'chondro' dataset, which is 
+    (https://r-hyperspec.github.io/). It contains 'chondro' dataset, which is
     so-called 'Raman map': Raman scattering spectra of a cartilage section
-    measured on each point of a grid. 
+    measured on each point of a grid.
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut"), email = "Claudia.Beleites@chemometrix.gmbh"),
     person("Erick",     "Oduniyi",   role = c("aut", "cre"), email = "eeoduniyi@gmail.com"),
@@ -16,7 +16,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyLoad: yes
 LazyData: yes
-Additional_repositories: 
+Additional_repositories:
     https://r-hyperspec.github.io/pkg-repo/
 Depends:
     R (>= 3.6.0)
@@ -36,6 +36,7 @@ Suggests:
     knitr,
     latticeExtra,
     sessioninfo,
+    rmarkdown
 URL:
     https://github.com/r-hyperspec/hySpc.chondro
 BugReports: https://github.com/r-hyperspec/hySpc.chondro/issues
