@@ -86,7 +86,8 @@ knitr::write_bib(
   c(
     "hyperSpec"
   ),
-  file = "resources/chondro-pkg.bib"
+  file = "resources/chondro-pkg.bib",
+  prefix = "R_"
 )
 ```
 
@@ -104,7 +105,7 @@ knitr::write_bib(
 
 ```{block, type="note", echo=show_reviewers_notes}
 
-`# FIXME. Fix the contents of this box:`{.r}  
+`# FIXME. Fix the contents of this box:`{.r}
 
 `# FIXME. This box should be removed`{.r}
 
