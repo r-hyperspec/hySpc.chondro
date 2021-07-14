@@ -18,7 +18,7 @@
 #' chondro
 #'
 #' ## do baseline correction
-#' baselines <- spc.fit.poly.below(chondro)
+#' baselines <- spc_fit_poly_below(chondro)
 #' chondro <- chondro - baselines
 #'
 #' ## area normalization
