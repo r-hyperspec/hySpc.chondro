@@ -172,9 +172,9 @@ In order to speed up the reading <code class="sourceCode r"><span class="kw">rea
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Download file from:</span>
 <span class="va">raw_data_url</span> <span class="op">&lt;-</span>
-  <span class="st">'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz'</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">'rawdata'</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">raw_data_url</span>, <span class="st">'rawdata/chondro.gz'</span><span class="op">)</span>
+  <span class="st">"https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"rawdata"</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">raw_data_url</span>, <span class="st">"rawdata/chondro.gz"</span><span class="op">)</span>
 
 <span class="co"># Read the raw data and make a hyperSpec object</span>
 <span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">hySpc.read.txt</span><span class="fu">::</span><span class="fu"><a href="https://r-hyperspec.github.io/hySpc.read.txt/reference/read_txt_Renishaw.html">read_txt_Renishaw</a></span><span class="op">(</span><span class="st">"rawdata/chondro.gz"</span>, data <span class="op">=</span> <span class="st">"xyspc"</span><span class="op">)</span>
@@ -315,13 +315,10 @@ Rounding erros in the point coordinates of lateral measurement grid.
 <p>As the overview shows that the spectra contain <code class="sourceCode r"><span class="ot">NA</span></code>s (from cosmic spike removal that was done previously), the first step is to remove these.
 Also, the wavelength axis of the raw spectra is not evenly spaced (the data points are between 0.85 and 1 <span class="math inline">\(cm^{-1}\)</span> apart from each other).
 Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
-All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="kw">spc.loess</span>()</code>.
+All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="kw">spc_loess</span>()</code>.
 The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span>, or 4 <span class="math inline">\(cm^{-1}\)</span> data point spacing.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">spc.loess</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Function 'spc.loess' is deprecated. </span>
-<span class="co">#&gt; Use function 'spc_loess' instead.</span>
-<span class="co">#&gt; Warning: Function '.fix_spc_colnames' is deprecated.</span>
+<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">spc_loess</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="va">chondro</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
@@ -336,12 +333,10 @@ They are stored for saving as the distributed demo data:</p>
 <div id="baseline-correction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#baseline-correction" class="anchor"></a><span class="header-section-number">4.3</span> Baseline Correction</h2>
-<p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
+<p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
 The default is a linear baseline, which is appropriate in our case:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">baselines</span> <span class="op">&lt;-</span> <span class="fu">spc.fit.poly.below</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Function 'spc.fit.poly.below' is deprecated. </span>
-<span class="co">#&gt; Use function 'spc_fit_poly_below' instead.</span>
+<code class="sourceCode R"><span class="va">baselines</span> <span class="op">&lt;-</span> <span class="fu">spc_fit_poly_below</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
 <span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="va">baselines</span></code></pre></div>
 </div>
 <div id="normalization" class="section level2">
@@ -412,9 +407,9 @@ Figure 4.7: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="kw">spc.identify</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## omit the first 4 PCs</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span> <span class="op">[</span>, , <span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span> <span class="op">[</span>, , <span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span> <span class="op">[</span>, , <span class="fl">7</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">7</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">out</span>
 <span class="co">#&gt; [1] 105 140 216 289  75  69</span>
@@ -611,7 +606,6 @@ However, they do not follow the model-predict paradigm, but instead do directly 
     xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"x"</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"y"</span><span class="op">)</span>,
     col <span class="op">=</span> <span class="va">DNAcols</span>
   <span class="op">)</span>
-
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span><span class="op">)</span>
@@ -643,7 +637,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 
 <span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">new</span><span class="op">(</span><span class="st">"hyperSpec"</span>,
   spc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">tcrossprod</a></span><span class="op">(</span><span class="va">.chondro_scores</span>, <span class="va">.chondro_loadings</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">.chondro_center</span>, each <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.chondro_scores</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">.chondro_center</span>, each <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.chondro_scores</span><span class="op">)</span><span class="op">)</span>,
   wavelength <span class="op">=</span> <span class="va">.chondro_wl</span>,
   data <span class="op">=</span> <span class="va">.chondro_extra</span>,
   labels <span class="op">=</span> <span class="va">.chondro_labels</span>
@@ -686,7 +680,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  ggplot2        * 3.3.5      2021-06-25 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-07-14 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.9000 2021-07-14 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-07-14 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.5      2021-07-13 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.1.0)</span>
