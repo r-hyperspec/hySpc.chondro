@@ -1,8 +1,10 @@
 
 <!-- badges: start -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![CRAN status](https://www.r-pkg.org/badges/version/hySpc.chondro)](https://cran.r-project.org/package=hySpc.chondro)
 [![R build status](https://github.com/r-hyperspec/hySpc.chondro/workflows/R-CMD-check/badge.svg)](https://github.com/r-hyperspec/hySpc.chondro/actions)
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Website (pkgdown)](https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml)
+
 <!--
 [![Codecov test coverage](https://codecov.io/gh/r-hyperspec/hySpc.chondro/branch/develop/graph/badge.svg) (develop)](https://codecov.io/gh/r-hyperspec/hySpc.chondro?branch=develop)
 -->
