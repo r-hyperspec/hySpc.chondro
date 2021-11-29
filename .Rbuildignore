@@ -1,15 +1,29 @@
+
+# IDE & editor files
 ^.*\.Rproj$
-^\.github$
 ^\.Rproj\.user$
-^\.travis\.yml$
-^_pkgdown\.yml$
-^appveyor\.yml$
-^codecov\.yml$
-^CONTRIBUTING\.md$
-^data-raw$
-^docs
-^docs$
+^_tmp$
+
+# Other/Broad
+^.*\.html
+^.*\.pdf
+
+# Directories
 ^github-helpers$
-^inst/extdata/chondro\.gz$
+^\.github$
 ^pkgdown$
-^Vignettes-Rnw$
+^data-raw$
+^docs$
+^_tmp$
+
+# Helper files
+Makefile
+^CONTRIBUTING\.md$
+^README\.md$
+^README\.Rmd$
+^codecov\.yml$
+^_pkgdown\.yml$
+
+
+# Package specific
+^inst/extdata/chondro\.gz$
