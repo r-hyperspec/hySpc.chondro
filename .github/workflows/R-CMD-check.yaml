@@ -1,3 +1,10 @@
+# READ-ONLY FILE
+#
+# Original file resides in r-hyperspec/pkg-skelton.
+# DO NOT EDIT in any other repo as these changes will be overwritten.
+# Edit at r-hyperspec/pkg-skelton, then push there and
+# this file will be deployed to the other repos.
+#
 on:
   push:
     branches:
@@ -84,8 +91,7 @@ jobs:
 
       - name: Roxygenize
         run: |
-          devtools::document(roclets = c('rd', 'collate', 'namespace'))
-          devtools::document(roclets = c('vignette'))
+          devtools::document()
         shell: Rscript {0}
 
       - name: Check
@@ -116,6 +122,3 @@ jobs:
         if: ${{ runner.os == 'Windows' && startsWith(steps.install-r.outputs.installed-r-version, '3.6' ) }}
         shell: bash
         run: echo "C:/Program Files/Git/usr/bin" >> $GITHUB_PATH
-
-
-
