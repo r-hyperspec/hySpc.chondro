@@ -1,15 +1,32 @@
+# IDE & editor files
 ^.*\.Rproj$
-^\.github$
 ^\.Rproj\.user$
-^\.travis\.yml$
-^_pkgdown\.yml$
-^appveyor\.yml$
-^codecov\.yml$
-^CONTRIBUTING\.md$
+
+# Directories
+^\.github$
+^_tmp$
 ^data-raw$
-^docs
 ^docs$
 ^github-helpers$
-^inst/extdata/chondro\.gz$
 ^pkgdown$
+
+# Helper files
+^_pkgdown\.yml$
+^codecov\.yml$
+^CONTRIBUTING\.md$
+^README\.md$
+^README\.Rmd$
+Makefile
+
+# Unwanted files
+Rplots.pdf
+
+# Other/Broad
+^.*\.html
+^.*\.pdf
+
+### Package-specific ###
+^inst/extdata/chondro\.gz$
 ^Vignettes-Rnw$
+tests/testthat/fileio
+
