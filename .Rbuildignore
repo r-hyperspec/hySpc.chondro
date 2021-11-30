@@ -1,44 +1,15 @@
-# READ-ONLY FILE
-#
-# Original file resides in r-hyperspec/pkg-skelton.
-# DO NOT EDIT in any other repo as these changes will be overwritten.
-# Edit at r-hyperspec/pkg-skelton, then push there and
-# this file will be deployed to the other repos.
-#
-
-# IDE & editor files
 ^.*\.Rproj$
+^\.github$
 ^\.Rproj\.user$
-
-# Directories
-^github-helpers$
-^\.github$
-^pkgdown$
-^data-raw$
-^docs$
-^_tmp$
-
-# Helper files
-^\.github$
-^github-helpers$
-^codecov\.yml$
-^NEWS\.html$
-^CONTRIBUTING\.md$
-^README\.md$
-^README\.Rmd$
-^codecov\.yml$
+^\.travis\.yml$
 ^_pkgdown\.yml$
-Makefile
-
-# Unwanted files
-Rplots.pdf
-
-# Other/Broad
-^.*\.html
-^.*\.pdf
-
-### Package-specific ###
+^appveyor\.yml$
+^codecov\.yml$
+^CONTRIBUTING\.md$
+^data-raw$
+^docs
+^docs$
+^github-helpers$
 ^inst/extdata/chondro\.gz$
-tests/testthat/fileio
-
-
+^pkgdown$
+^Vignettes-Rnw$

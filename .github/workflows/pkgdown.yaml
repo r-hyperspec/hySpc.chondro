@@ -1,19 +1,9 @@
-# READ-ONLY FILE
-#
-# Original file resides in r-hyperspec/pkg-skelton.
-# DO NOT EDIT in any other repo as these changes will be overwritten.
-# Edit at r-hyperspec/pkg-skelton, then push there and
-# this file will be deployed to the other repos.
-#
-
 on:
   push:
     branches:
       - release
-      - main
       - master
       - develop
-    tags: ['*']
 
 name: Website (pkgdown)
 
@@ -22,17 +12,17 @@ jobs:
     runs-on: macOS-latest
 
     env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-pandoc@v1
-
-      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-r@master
         with:
-          use-public-rspm: true
           r-version: 'release'
+
+      - uses: r-lib/actions/setup-pandoc@master
 
       - name: Query dependencies
         run: |
@@ -52,7 +42,8 @@ jobs:
         run: |
           install.packages(c("remotes", "devtools"))
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("pkgdown")
+          # remotes::install_dev("pkgdown")
+          remotes::install_github("forked-packages/pkgdown")
         shell: Rscript {0}
 
       - name: Roxygenize
