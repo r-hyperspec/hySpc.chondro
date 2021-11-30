@@ -21,10 +21,6 @@ Makefile
 # Unwanted files
 Rplots.pdf
 
-# Other/Broad
-^.*\.html
-^.*\.pdf
-
 ### Package-specific ###
 ^inst/extdata/chondro\.gz$
 ^Vignettes-Rnw$
