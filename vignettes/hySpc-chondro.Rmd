@@ -778,8 +778,12 @@ This is the file distributed with package **hyperSpec** as example data set.
 
 # Session Info {-}
 
+<details><summary>Session info</summary>
+
 ```{r session-info-chondro, paged.print=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
+
+</details>
 
 # References {-}
