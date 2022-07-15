@@ -23,6 +23,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,12 +44,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="articles/hySpc-chondro.html">Get started</a>
 </li>
 <li>
@@ -59,7 +55,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/r-hyperspec/hySpc.chondro/">
+  <a href="https://github.com/r-hyperspec/hySpc.chondro/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -80,26 +76,22 @@
 
 <!--
 [![Codecov test coverage](https://codecov.io/gh/r-hyperspec/hySpc.chondro/branch/develop/graph/badge.svg) (develop)](https://codecov.io/gh/r-hyperspec/hySpc.chondro?branch=develop)
--->
-<!-- badges: end -->
-<!-- ---------------------------------------------------------------------- -->
-<div id="r-package-hyspcchondro" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#r-package-hyspcchondro" class="anchor"></a>R package <strong>hySpc.chondro</strong>
+--><!-- badges: end --><!-- ---------------------------------------------------------------------- --><div class="section level1">
+<div class="page-header"><h1 id="r-package-hyspcchondro">R package <strong>hySpc.chondro</strong>
+<a class="anchor" aria-label="anchor" href="#r-package-hyspcchondro"></a>
 </h1></div>
-<!-- ---------------------------------------------------------------------- -->
-<p>Package <strong>hySpc.chondro</strong> is a part of <a href="https://r-hyperspec.github.io/"><strong>hyperSpec</strong></a> family packages. It contains <code>chondro</code>¹ dataset, which is so-called <em>Raman map</em>: <a href="https://en.wikipedia.org/wiki/Raman_spectroscopy">Raman scattering spectra</a> of a cartilage section measured on each point of a grid.</p>
-<p>¹ Word <code>chondro</code> is based on word <a href="https://en.wikipedia.org/wiki/Chondrocyte">“chondrocytes”</a>, cells found in cartilage.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<div id="install-from-cran-like-repository" class="section level3">
-<h3 class="hasAnchor">
-<a href="#install-from-cran-like-repository" class="anchor"></a>Install from CRAN-like Repository</h3>
+<!-- ---------------------------------------------------------------------- --><p>Package <strong>hySpc.chondro</strong> is a part of <a href="https://r-hyperspec.github.io/" class="external-link"><strong>hyperSpec</strong></a> family packages. It contains <code>chondro</code>¹ dataset, which is so-called <em>Raman map</em>: <a href="https://en.wikipedia.org/wiki/Raman_spectroscopy" class="external-link">Raman scattering spectra</a> of a cartilage section measured on each point of a grid.</p>
+<p>¹ Word <code>chondro</code> is based on word <a href="https://en.wikipedia.org/wiki/Chondrocyte" class="external-link">“chondrocytes”</a>, cells found in cartilage.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="section level3">
+<h3 id="install-from-cran-like-repository">Install from CRAN-like Repository<a class="anchor" aria-label="anchor" href="#install-from-cran-like-repository"></a>
+</h3>
 <p>The <strong>recommended</strong> way to install the in-development version:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">repos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://r-hyperspec.github.io/pkg-repo/"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"hySpc.chondro"</span>, repos <span class="op">=</span> <span class="va">repos</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">repos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://r-hyperspec.github.io/pkg-repo/"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"repos"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hySpc.chondro"</span>, repos <span class="op">=</span> <span class="va">repos</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -108,58 +100,69 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/r-hyperspec/hySpc.chondro/">https://​github.com/​r-hyperspec/​hySpc.chondro/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/r-hyperspec/hySpc.chondro/issues">https://​github.com/​r-hyperspec/​hySpc.chondro/​issues</a>
-</li>
+<li><a href="https://github.com/r-hyperspec/hySpc.chondro/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/r-hyperspec/hySpc.chondro/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 </ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing hySpc.chondro</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Claudia Beleites <br><small class="roles"> Author </small>  </li>
 <li>Erick Oduniyi <br><small class="roles"> Author, maintainer </small>  </li>
 <li>
-<a href="https://orcid.org/0000-0002-9500-5167">Vilmantas Gegzna</a> <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<a href="https://orcid.org/0000-0002-9500-5167" class="external-link">Vilmantas Gegzna</a> <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></li>
-<li><a href="https://cran.r-project.org/package=hySpc.chondro"><img src="https://www.r-pkg.org/badges/version/hySpc.chondro" alt="CRAN status"></a></li>
-<li><a href="https://github.com/r-hyperspec/hySpc.chondro/actions"><img src="https://github.com/r-hyperspec/hySpc.chondro/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml"><img src="https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml/badge.svg" alt="Website (pkgdown)"></a></li>
+<li><a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></li>
+<li><a href="https://cran.r-project.org/package=hySpc.chondro" class="external-link"><img src="https://www.r-pkg.org/badges/version/hySpc.chondro" alt="CRAN status"></a></li>
+<li><a href="https://github.com/r-hyperspec/hySpc.chondro/actions" class="external-link"><img src="https://github.com/r-hyperspec/hySpc.chondro/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/r-hyperspec/hySpc.chondro/actions/workflows/pkgdown.yaml/badge.svg" alt="Website (pkgdown)"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Claudia Beleites, Erick Oduniyi, <a href="https://orcid.org/0000-0002-9500-5167">Vilmantas Gegzna</a>.</p>
+  <p></p>
+<p>Developed by Claudia Beleites, Erick Oduniyi, <a href="https://orcid.org/0000-0002-9500-5167" class="external-link">Vilmantas Gegzna</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
@@ -167,6 +170,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,12 +41,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/hySpc-chondro.html">Get started</a>
 </li>
 <li>
@@ -56,7 +52,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/r-hyperspec/hySpc.chondro/">
+  <a href="https://github.com/r-hyperspec/hySpc.chondro/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -71,13 +67,13 @@
 
       
 
-      </header><script src="hySpc-chondro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Raman Spectra of Chondrocytes in Cartilage</h1>
-            <h3 class="subtitle">Example Workflow for 2D Raman Spectra Dataset <code>chondro</code>
+            <h3 data-toc-skip class="subtitle">Example Workflow for 2D Raman Spectra Dataset <code>chondro</code>
 </h3>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
+                        <h4 data-toc-skip class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -89,9 +85,9 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-12-01</h4>
+            <h4 data-toc-skip class="date">2022-07-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/r-hyperspec/hySpc.chondro/blob/master/vignettes/hySpc-chondro.Rmd"><code>vignettes/hySpc-chondro.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-hyperspec/hySpc.chondro/blob/HEAD/vignettes/hySpc-chondro.Rmd" class="external-link"><code>vignettes/hySpc-chondro.Rmd</code></a></small>
       <div class="hidden name"><code>hySpc-chondro.Rmd</code></div>
 
     </div>
@@ -100,9 +96,10 @@
     
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
+<div class="section level2">
+<h2 id="introduction">
+<span class="header-section-number">1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>This vignette describes the <code class="sourceCode r">chondro</code> data set.
 It shows a complete data analysis work flow on a Raman map demonstrating frequently needed preprocessing methods:</p>
 <ul>
@@ -128,9 +125,10 @@ It shows a complete data analysis work flow on a Raman map demonstrating frequen
 <p>showing how to use data analysis procedures provided by R and other
 packages.</p>
 </div>
-<div id="the-data-set" class="section level1">
-<h1 class="hasAnchor">
-<a href="#the-data-set" class="anchor"></a><span class="header-section-number">2</span> The Data Set</h1>
+<div class="section level2">
+<h2 id="the-data-set">
+<span class="header-section-number">2</span> The Data Set<a class="anchor" aria-label="anchor" href="#the-data-set"></a>
+</h2>
 <p>Raman spectra of a cartilage section were measured on each point of a grid, resulting in a so-called
 <em>Raman map</em>.
 Figure <a href="#fig:vis-all">2.1</a> shows a microscope picture of the measured area and its
@@ -160,9 +158,10 @@ The frame indicates the measurement area of <span class="math inline">\(35×25 \
 <strong>Spectrometer:</strong> Renishaw InVia</li>
 </ul>
 </div>
-<div id="data-import" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data-import" class="anchor"></a><span class="header-section-number">3</span> Data Import</h1>
+<div class="section level2">
+<h2 id="data-import">
+<span class="header-section-number">3</span> Data Import<a class="anchor" aria-label="anchor" href="#data-import"></a>
+</h2>
 <p>Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file.
 Raman maps are exported having four columns, <em>y</em>, <em>x</em>, <em>raman shift</em>, and <em>intensity</em>.
 Package <strong>hySpc.read.txt</strong> comes with a function to import such files, <code class="sourceCode r">hySpc.read.txt<span class="op">::</span><span class="kw">read_txt_Renishaw</span>()</code>.
@@ -170,22 +169,22 @@ The function assumes a map as default, but can also handle single spectra (<code
 In addition, large files may be processed in chunks.
 In order to speed up the reading <code class="sourceCode r"><span class="kw">read_txt_Renishaw</span>()</code> does not allow missing values, but it does work with <code class="sourceCode r"><span class="ot">NA</span></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Download file from:</span>
-<span class="va">raw_data_url</span> <span class="op">&lt;-</span>
-  <span class="st">"https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"rawdata"</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">raw_data_url</span>, <span class="st">"rawdata/chondro.gz"</span><span class="op">)</span>
-
-<span class="co"># Read the raw data and make a hyperSpec object</span>
-<span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">hySpc.read.txt</span><span class="fu">::</span><span class="fu"><a href="https://r-hyperspec.github.io/hySpc.read.txt/reference/read_txt_Renishaw.html">read_txt_Renishaw</a></span><span class="op">(</span><span class="st">"rawdata/chondro.gz"</span>, data <span class="op">=</span> <span class="st">"xyspc"</span><span class="op">)</span>
-<span class="va">chondro</span>
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    875 spectra</span>
-<span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    1272 data points / spectrum</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Download file from:</span></span>
+<span><span class="va">raw_data_url</span> <span class="op">&lt;-</span></span>
+<span>  <span class="st">"https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"rawdata"</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span><span class="va">raw_data_url</span>, <span class="st">"rawdata/chondro.gz"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read the raw data and make a hyperSpec object</span></span>
+<span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">hySpc.read.txt</span><span class="fu">::</span><span class="fu"><a href="https://r-hyperspec.github.io/hySpc.read.txt/reference/read_txt_Renishaw.html" class="external-link">read_txt_Renishaw</a></span><span class="op">(</span><span class="st">"rawdata/chondro.gz"</span>, data <span class="op">=</span> <span class="st">"xyspc"</span><span class="op">)</span></span>
+<span><span class="va">chondro</span></span>
+<span><span class="co">#&gt; hyperSpec object</span></span>
+<span><span class="co">#&gt;    875 spectra</span></span>
+<span><span class="co">#&gt;    4 data columns</span></span>
+<span><span class="co">#&gt;    1272 data points / spectrum</span></span></code></pre></div>
 <p>To get an overview of the spectra (figure <a href="#fig:rawspc">3.1</a>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rawspc"></span>
 <img src="hySpc-chondro_files/figure-html/rawspc-1.png" alt="The raw spectra: median, 16^th^ and 84^th^, and 5^th^ and 95^th^ percentile
@@ -196,10 +195,10 @@ spectra.
 </div>
 <p>A mean intensity map (figure <a href="#fig:rawmap">3.2</a>) is produced by:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Set a color palette</span>
-<span class="va">seq_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"dark green"</span><span class="op">)</span>, space <span class="op">=</span> <span class="st">"Lab"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Set a color palette</span></span>
+<span><span class="va">seq_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"dark green"</span><span class="op">)</span>, space <span class="op">=</span> <span class="st">"Lab"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, func.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, func.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rawmap"></span>
 <img src="hySpc-chondro_files/figure-html/rawmap-1.png" alt="The sum intensity of the raw spectra."><p class="caption">
@@ -211,13 +210,15 @@ This function defaults to the <code class="sourceCode r"><span class="kw">mean</
 Further arguments that should be handed to this function can be given in list <code class="sourceCode r">func.args</code>.
 As the raw data contains <code class="sourceCode r"><span class="ot">NA</span></code>s due to deleting cosmic ray spikes, this argument is needed here.</p>
 </div>
-<div id="preprocessing" class="section level1">
-<h1 class="hasAnchor">
-<a href="#preprocessing" class="anchor"></a><span class="header-section-number">4</span> Preprocessing</h1>
+<div class="section level2">
+<h2 id="preprocessing">
+<span class="header-section-number">4</span> Preprocessing<a class="anchor" aria-label="anchor" href="#preprocessing"></a>
+</h2>
 <p>As usual in Raman spectroscopy of biological tissues, the spectra need some preprocessing.</p>
-<div id="aligning-the-spatial-grid" class="section level2">
-<h2 class="hasAnchor">
-<a href="#aligning-the-spatial-grid" class="anchor"></a><span class="header-section-number">4.1</span> Aligning the Spatial Grid</h2>
+<div class="section level3">
+<h3 id="aligning-the-spatial-grid">
+<span class="header-section-number">4.1</span> Aligning the Spatial Grid<a class="anchor" aria-label="anchor" href="#aligning-the-spatial-grid"></a>
+</h3>
 <p>The spectra were acquired on a regular square grid of measurement positions over the sample.
 The <code class="sourceCode r">hyperSpec</code> object, however, does not store the data on this grid but rather stores the position where the spectra were taken.
 This allows more handling of irregular point patterns, and of sparse measurements where not a
@@ -227,16 +228,16 @@ points.
 This is most obvious in false-colour maps of the sample (fig. <a href="#fig:rawmap">3.2</a>, as <code class="sourceCode r">plotmap</code> by default uses <code class="sourceCode r">panel.levelplot.raster</code>, which assumes a regular grid is underlying the data.
 The symptoms are warnings “<code>'x' values are not equispaced; output may be wrong</code>” and white stripes in the false colour map (fig. <a href="#fig:irregular-a">4.1</a>), which occur even thought the points are almost at their correct place (fig. <a href="#fig:irregular-b">4.2</a>).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## disturb a few points</span>
-<span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">500</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">500</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>
-<span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="fl">660</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="fl">660</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## disturb a few points</span></span>
+<span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">500</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">500</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="fl">660</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="fl">660</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></code></pre></div>
 <!-- irregular-grid ------------------------------------------------------ -->
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'x'</span>
-<span class="co">#&gt; values are not equispaced; output may be wrong</span>
-<span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'y'</span>
-<span class="co">#&gt; values are not equispaced; output may be wrong</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'x'</span></span>
+<span><span class="co">#&gt; values are not equispaced; output may be wrong</span></span>
+<span><span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'y'</span></span>
+<span><span class="co">#&gt; values are not equispaced; output may be wrong</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:irregular-a"></span>
 <img src="hySpc-chondro_files/figure-html/irregular-a-1.png" alt="
@@ -251,11 +252,11 @@ Rounding erros in the point coordinates of lateral measurement grid:
 <!-- --------------------------------------------------------------------- -->
 <!-- irregular-pts ------------------------------------------------------- -->
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://latticeextra.r-forge.r-project.org/">"latticeExtra"</a></span><span class="op">)</span>
-<span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>,
-  col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>, panel <span class="op">=</span> <span class="va">panel.levelplot.points</span>,
-  col <span class="op">=</span> <span class="cn">NA</span>, pch <span class="op">=</span> <span class="fl">22</span>, cex <span class="op">=</span> <span class="fl">1.9</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://latticeextra.r-forge.r-project.org/" class="external-link">"latticeExtra"</a></span><span class="op">)</span></span>
+<span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>,</span>
+<span>  col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>, panel <span class="op">=</span> <span class="va">panel.levelplot.points</span>,</span>
+<span>  col <span class="op">=</span> <span class="cn">NA</span>, pch <span class="op">=</span> <span class="fl">22</span>, cex <span class="op">=</span> <span class="fl">1.9</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:irregular-b"></span>
 <img src="hySpc-chondro_files/figure-html/irregular-b-1.png" alt="
@@ -268,16 +269,16 @@ Rounding erros in the point coordinates of lateral measurement grid:
 </p>
 </div>
 <!-- --------------------------------------------------------------------- -->
-<p>Such slight rounding errors can be corrected by <code class="sourceCode r"><span class="kw">fitraster</span>()</code> or <code class="sourceCode r"><span class="kw">makeraster</span>()</code>.
-Function <code class="sourceCode r"><span class="kw">fitraster</span>()</code> needs the step size of the raster and a starting coordinate, whereas <code class="sourceCode r"><span class="kw">makeraster</span>()</code> tries to guess these parameters for <code class="sourceCode r"><span class="kw">fitraster</span>()</code>.
-As long as just a few points are affected by rounding errors, <code class="sourceCode r"><span class="kw">makeraster</span>()</code> works fine:</p>
+<p>Such slight rounding errors can be corrected by <code class="sourceCode r"><span class="kw">raster_fit</span>()</code> or <code class="sourceCode r"><span class="kw">raster_make</span>()</code>.
+Function <code class="sourceCode r"><span class="kw">raster_fit</span>()</code> needs the step size of the raster and a starting coordinate, whereas <code class="sourceCode r"><span class="kw">raster_make</span>()</code> tries to guess these parameters for <code class="sourceCode r"><span class="kw">raster_fit</span>()</code>.
+As long as just a few points are affected by rounding errors, <code class="sourceCode r"><span class="kw">raster_make</span>()</code> works fine:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">fitraster</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">x</span>
-<span class="va">chondro</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">fitraster</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">raster_fit</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
+<span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">raster_fit</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span></code></pre></div>
 <p>the result is shown in figure <a href="#fig:irregular-c">4.3</a>.</p>
 <!-- irregular-corr  ------------------------------------------------------ -->
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, col.regions <span class="op">=</span> <span class="fu">seq_palette</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:irregular-c"></span>
 <img src="hySpc-chondro_files/figure-html/irregular-c-1.png" alt="
@@ -309,43 +310,46 @@ Rounding erros in the point coordinates of lateral measurement grid.
 <!-- ===================================================================== -->
 <!-- ===================================================================== -->
 </div>
-<div id="spectral-smoothing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#spectral-smoothing" class="anchor"></a><span class="header-section-number">4.2</span> Spectral Smoothing</h2>
+<div class="section level3">
+<h3 id="spectral-smoothing">
+<span class="header-section-number">4.2</span> Spectral Smoothing<a class="anchor" aria-label="anchor" href="#spectral-smoothing"></a>
+</h3>
 <p>As the overview shows that the spectra contain <code class="sourceCode r"><span class="ot">NA</span></code>s (from cosmic spike removal that was done previously), the first step is to remove these.
 Also, the wavelength axis of the raw spectra is not evenly spaced (the data points are between 0.85 and 1 <span class="math inline">\(cm^{-1}\)</span> apart from each other).
 Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
 All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="kw">spc_loess</span>()</code>.
 The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span>, or 4 <span class="math inline">\(cm^{-1}\)</span> data point spacing.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">spc_loess</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="va">chondro</span>
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    875 spectra</span>
-<span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">spc_loess</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">chondro</span></span>
+<span><span class="co">#&gt; hyperSpec object</span></span>
+<span><span class="co">#&gt;    875 spectra</span></span>
+<span><span class="co">#&gt;    4 data columns</span></span>
+<span><span class="co">#&gt;    300 data points / spectrum</span></span></code></pre></div>
 <p>The spectra are now the same as in the data set <code class="sourceCode r">chondro</code>.
 However, the data set also contains the clustering results (see at the very end of this document).
 They are stored for saving as the distributed demo data:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spectra_to_save</span> <span class="op">&lt;-</span> <span class="va">chondro</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">spectra_to_save</span> <span class="op">&lt;-</span> <span class="va">chondro</span></span></code></pre></div>
 </div>
-<div id="baseline-correction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#baseline-correction" class="anchor"></a><span class="header-section-number">4.3</span> Baseline Correction</h2>
+<div class="section level3">
+<h3 id="baseline-correction">
+<span class="header-section-number">4.3</span> Baseline Correction<a class="anchor" aria-label="anchor" href="#baseline-correction"></a>
+</h3>
 <p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
 The default is a linear baseline, which is appropriate in our case:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">baselines</span> <span class="op">&lt;-</span> <span class="fu">spc_fit_poly_below</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
-<span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="va">baselines</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">baselines</span> <span class="op">&lt;-</span> <span class="fu">spc_fit_poly_below</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span></span>
+<span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="va">baselines</span></span></code></pre></div>
 </div>
-<div id="normalization" class="section level2">
-<h2 class="hasAnchor">
-<a href="#normalization" class="anchor"></a><span class="header-section-number">4.4</span> Normalization</h2>
+<div class="section level3">
+<h3 id="normalization">
+<span class="header-section-number">4.4</span> Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a>
+</h3>
 <p>As the spectra are quite similar, area normalization should work well:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bl-norm"></span>
 <img src="hySpc-chondro_files/figure-html/bl-norm-1.png" alt="The spectra after smoothing, baseline correction, and normalization.  "><p class="caption">
@@ -357,16 +361,17 @@ If needed, this collinearity can be broken by removing one of the variates invol
 Note that the <code class="sourceCode r">chondro</code> object shipped with package <strong>hyperSpec</strong> set has multiple collinearities as only the first 10 principal components are shipped (see below).</p>
 <p>For the results of these preprocessing steps, see figure <a href="#fig:bl-norm">4.5</a>.</p>
 </div>
-<div id="subtracting-the-overall-composition" class="section level2">
-<h2 class="hasAnchor">
-<a href="#subtracting-the-overall-composition" class="anchor"></a><span class="header-section-number">4.5</span> Subtracting the Overall Composition</h2>
+<div class="section level3">
+<h3 id="subtracting-the-overall-composition">
+<span class="header-section-number">4.5</span> Subtracting the Overall Composition<a class="anchor" aria-label="anchor" href="#subtracting-the-overall-composition"></a>
+</h3>
 <p>The spectra are very homogeneous, but I’m interested in the differences between the different regions of the sample.
 Subtracting the minimum spectrum cancels out the matrix composition that is common to all spectra.
 But the minimum spectrum also picks up a lot of noise.
 So instead, the 5<sup>th</sup> percentile spectrum is subtracted:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="fl">0.05</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bl-perc"></span>
 <img src="hySpc-chondro_files/figure-html/bl-perc-1.png" alt="The spectra after subtracting the 5^th^ percentile spectrum.  "><p class="caption">
@@ -376,27 +381,28 @@ Figure 4.6: The spectra after subtracting the 5<sup>th</sup> percentile spectrum
 <p>The resulting data set is shown in figure <a href="#fig:bl-perc">4.6</a>.
 Some interesting differences start to show up: there are distinct lipid bands in some but not all of the spectra.</p>
 </div>
-<div id="outlier-removal-by-principal-component-analysis-pca" class="section level2">
-<h2 class="hasAnchor">
-<a href="#outlier-removal-by-principal-component-analysis-pca" class="anchor"></a><span class="header-section-number">4.6</span> Outlier Removal by Principal Component Analysis (PCA)</h2>
+<div class="section level3">
+<h3 id="outlier-removal-by-principal-component-analysis-pca">
+<span class="header-section-number">4.6</span> Outlier Removal by Principal Component Analysis (PCA)<a class="anchor" aria-label="anchor" href="#outlier-removal-by-principal-component-analysis-pca"></a>
+</h3>
 <p>PCA is a technique that decomposes the data into scores and loadings (virtual spectra).
 It is known to be quite sensitive to outliers.
 Thus, I use it for outlier detection. The resulting scores and loadings are put again into <code class="sourceCode r">hyperSpec</code> objects by <code class="sourceCode r"><span class="kw">decomposition</span>()</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">chondro</span>, center <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu">decomposition</span><span class="op">(</span><span class="va">chondro</span>, <span class="va">pca</span><span class="op">$</span><span class="va">x</span>,
-  label.wavelength <span class="op">=</span> <span class="st">"PC"</span>,
-  label.spc <span class="op">=</span> <span class="st">"score / a.u."</span>
-<span class="op">)</span>
-
-<span class="va">loadings</span> <span class="op">&lt;-</span> <span class="fu">decomposition</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">pca</span><span class="op">$</span><span class="va">rotation</span><span class="op">)</span>,
-  scores <span class="op">=</span> <span class="cn">FALSE</span>,
-  label.spc <span class="op">=</span> <span class="st">"loading I / a.u."</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">chondro</span>, center <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu">decomposition</span><span class="op">(</span><span class="va">chondro</span>, <span class="va">pca</span><span class="op">$</span><span class="va">x</span>,</span>
+<span>  label.wavelength <span class="op">=</span> <span class="st">"PC"</span>,</span>
+<span>  label.spc <span class="op">=</span> <span class="st">"score / a.u."</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">loadings</span> <span class="op">&lt;-</span> <span class="fu">decomposition</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">pca</span><span class="op">$</span><span class="va">rotation</span><span class="op">)</span>,</span>
+<span>  scores <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  label.spc <span class="op">=</span> <span class="st">"loading I / a.u."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Plotting the scores of each PC against all other gives a good idea where to look for outliers.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">scores</span><span class="op">[[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">scores</span><span class="op">[[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pca-pairs"></span>
 <img src="hySpc-chondro_files/figure-html/pca-pairs-1.png" alt="The `pairs()`{.r} plot of the first 7 scores. "><p class="caption">
@@ -404,34 +410,34 @@ Figure 4.7: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 </p>
 </div>
 <p>Now the spectra can be found either by plotting two scores against each other (by <code class="sourceCode r"><span class="kw">plot</span>()</code>) and identifying with <code class="sourceCode r"><span class="kw">identify</span>()</code>, or they can be identified in the score map by <code class="sourceCode r"><span class="kw">map.identify</span>()</code>.
-There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="kw">spc.identify</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
+There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="kw">identify_spc</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## omit the first 4 PCs</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">7</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## omit the first 4 PCs</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">7</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">out</span>
-<span class="co">#&gt; [1] 105 140 216 289  75  69</span>
-<span class="va">outcols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"#800080"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>, <span class="st">"brown"</span><span class="op">)</span>
-
-<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cols</span><span class="op">[</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">outcols</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">out</span></span>
+<span><span class="co">#&gt; [1] 105 140 216 289  75  69</span></span>
+<span><span class="va">outcols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"#800080"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>, <span class="st">"brown"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cols</span><span class="op">[</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">outcols</span></span></code></pre></div>
 <p>We can check our findings by comparing the spectra to the bulk of spectra (figure <a href="#fig:pca-outspc">4.8</a>):</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-  plot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span> <span class="op">+</span> <span class="fl">.7</span><span class="op">)</span><span class="op">)</span>,
-  lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">out</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span>, yoffset <span class="op">=</span> <span class="va">i</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span><span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,
-    yoffset <span class="op">=</span> <span class="va">i</span>, col <span class="op">=</span> <span class="va">outcols</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,
-    lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-  <span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">600</span>, <span class="va">i</span> <span class="op">+</span> <span class="fl">.33</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  plot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span> <span class="op">+</span> <span class="fl">.7</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">out</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"spcprctl5"</span>, yoffset <span class="op">=</span> <span class="va">i</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span><span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    yoffset <span class="op">=</span> <span class="va">i</span>, col <span class="op">=</span> <span class="va">outcols</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">600</span>, <span class="va">i</span> <span class="op">+</span> <span class="fl">.33</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pca-outspc"></span>
 <img src="hySpc-chondro_files/figure-html/pca-outspc-1.png" alt="The suspected outlier spectra. "><p class="caption">
@@ -440,10 +446,10 @@ Figure 4.8: The suspected outlier spectra.
 </div>
 <p>and also by looking where these spectra appear in the scores <code class="sourceCode r"><span class="kw">pairs</span>()</code> plot (figure <a href="#fig:pca-pairs-2">4.9</a>):</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">46L</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span><span class="op">)</span>
-<span class="va">pch</span><span class="op">[</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">19L</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">scores</span><span class="op">[[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>, pch <span class="op">=</span> <span class="va">pch</span>, cex <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">46L</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pch</span><span class="op">[</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">19L</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">scores</span><span class="op">[[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>, pch <span class="op">=</span> <span class="va">pch</span>, cex <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pca-pairs-2"></span>
 <img src="hySpc-chondro_files/figure-html/pca-pairs-2-1.png" alt="The `pairs()`{.r} plot of the first 7 scores with suspected outliers. "><p class="caption">
@@ -459,12 +465,13 @@ Figure 4.9: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 <!-- ``` -->
 <p>Finally, the outliers are removed:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">[</span><span class="op">-</span><span class="va">out</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">[</span><span class="op">-</span><span class="va">out</span><span class="op">]</span></span></code></pre></div>
 </div>
 </div>
-<div id="hierarchical-cluster-analysis-hca" class="section level1">
-<h1 class="hasAnchor">
-<a href="#hierarchical-cluster-analysis-hca" class="anchor"></a><span class="header-section-number">5</span> Hierarchical Cluster Analysis (HCA)</h1>
+<div class="section level2">
+<h2 id="hierarchical-cluster-analysis-hca">
+<span class="header-section-number">5</span> Hierarchical Cluster Analysis (HCA)<a class="anchor" aria-label="anchor" href="#hierarchical-cluster-analysis-hca"></a>
+</h2>
 <p>HCA merges objects according to their (dis)similarity into clusters. The result is
 a dendrogram, a graph stating at which level two objects are similar
 and thus grouped together.</p>
@@ -474,10 +481,10 @@ The so-called <strong>Pearson</strong> distance <span class="math inline">\(D^2_
 <p>Also for computing the dendrogram, a number of choices are available.
 Here we choose <strong>Ward</strong>’s method, and, as it uses <strong>Euclid</strong>ean distance for calculating the dendrogram, <strong>Euclid</strong>ean distance also for the distance matrix:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
-<span class="va">dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">dist</span>, method <span class="op">=</span> <span class="st">"ward.D2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span></span>
+<span><span class="va">dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html" class="external-link">hclust</a></span><span class="op">(</span><span class="va">dist</span>, method <span class="op">=</span> <span class="st">"ward.D2"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dendrogram</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dendrogram</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:denddummy"></span>
 <img src="hySpc-chondro_files/figure-html/denddummy-1.png" alt="Dendogram. "><p class="caption">
@@ -486,16 +493,16 @@ Figure 5.1: Dendogram.
 </div>
 <p>In order to get clusters, the dendrogram is cut at a level specified either by height or by the number of clusters.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">dendrogram</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
-<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cutree.html" class="external-link">cutree</a></span><span class="op">(</span><span class="va">dendrogram</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span><span class="op">)</span></span></code></pre></div>
 <p>The result for <span class="math inline">\(k\)</span> = 3 clusters is plotted as a map (figure <a href="#fig:clustmap">5.2</a>).
 If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and <code class="sourceCode r">hyperSpec</code>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method uses the levels of the factor for the legend.</p>
 <p>Thus meaningful names are assigned</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span><span class="op">)</span></span></code></pre></div>
 <p>and the cluster membership map is plotted:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, <span class="va">clusters</span> <span class="op">~</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span>, col.regions <span class="op">=</span> <span class="va">cols</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span>, <span class="va">clusters</span> <span class="op">~</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span>, col.regions <span class="op">=</span> <span class="va">cols</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:clustmap"></span>
 <img src="hySpc-chondro_files/figure-html/clustmap-1.png" alt="Hierarchical cluster analysis: the cluster map for $k=3$ clusters. "><p class="caption">
@@ -504,9 +511,9 @@ Figure 5.2: Hierarchical cluster analysis: the cluster map for <span class="math
 </div>
 <p>The cluster membership can also be marked in the dendrogram:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># allow plotting the markers into the margin</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dendrogram</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, hang <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="fu">mark.dendrogram</span><span class="op">(</span><span class="va">dendrogram</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>xpd <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># allow plotting the markers into the margin</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dendrogram</span>, labels <span class="op">=</span> <span class="cn">FALSE</span>, hang <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu">mark_groups_in_dendrogram</span><span class="op">(</span><span class="va">dendrogram</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:dend"></span>
 <img src="hySpc-chondro_files/figure-html/dend-1.png" alt="Hierarchical cluster analysis: the dendrogram."><p class="caption">
@@ -518,10 +525,10 @@ The three clusters correspond to the cartilage matrix, the lacuna and the cells.
 The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.</p>
 <p>We can plot the cluster mean spectra <span class="math inline">\(\pm\)</span> 1 standard deviation using <code class="sourceCode r"><span class="kw">aggregate</span>()</code> (see figure <a href="#fig:clustmeans">5.4</a>):</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cluster.means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>, <span class="va">mean_pm_sd</span><span class="op">)</span>
-
-<span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>las <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cluster.means</span>, stacked <span class="op">=</span> <span class="st">".aggregate"</span>, fill <span class="op">=</span> <span class="st">".aggregate"</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cluster.means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>, <span class="va">mean_pm_sd</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>las <span class="op">=</span> <span class="fl">1</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cluster.means</span>, stacked <span class="op">=</span> <span class="st">".aggregate"</span>, fill <span class="op">=</span> <span class="st">".aggregate"</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:clustmeans"></span>
 <img src="hySpc-chondro_files/figure-html/clustmeans-1.png" alt="The cluster mean $\pm$ 1 standard deviation spectra.
@@ -531,19 +538,20 @@ The blue cluster shows distinct lipid bands, the yellow cluster collagen, and th
 </p>
 </div>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="plotting-a-false-colour-map-of-certain-spectral-regions" class="section level1">
-<h1 class="hasAnchor">
-<a href="#plotting-a-false-colour-map-of-certain-spectral-regions" class="anchor"></a><span class="header-section-number">6</span> Plotting a False-Colour Map of Certain Spectral Regions</h1>
+<div class="section level2">
+<h2 id="plotting-a-false-colour-map-of-certain-spectral-regions">
+<span class="header-section-number">6</span> Plotting a False-Colour Map of Certain Spectral Regions<a class="anchor" aria-label="anchor" href="#plotting-a-false-colour-map-of-certain-spectral-regions"></a>
+</h2>
 <p>Package <code class="sourceCode r">hyperSpec</code> comes with a sophisticated interface for specifying spectral ranges.
 Expressing things like 1000<span class="math inline">\(cm^{-1}\)</span> <span class="math inline">\(\pm\)</span> 1 data points is easily possible.
 Thus, we can have a fast look at the nucleic acid distribution, using the DNA bands at 728, 782, 1098, 1240, 1482, and 1577 <span class="math inline">\(cm^{-1}:\)</span></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">DNAcols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span><span class="op">)</span>, space <span class="op">=</span> <span class="st">"Lab"</span><span class="op">)</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
-<span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>,
-  col.regions <span class="op">=</span> <span class="va">DNAcols</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">DNAcols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span><span class="op">)</span>, space <span class="op">=</span> <span class="st">"Lab"</span><span class="op">)</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>  col.regions <span class="op">=</span> <span class="va">DNAcols</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DNA"></span>
 <img src="hySpc-chondro_files/figure-html/DNA-1.png" alt="False color map of DNA.  "><p class="caption">
@@ -553,18 +561,19 @@ Figure 6.1: False color map of DNA.
 <p>The result is shown in figure <a href="#fig:DNA">6.1</a>.
 While the nucleus of the right cell shows up nicely, only low concentration remainders are detected of the left cell.</p>
 </div>
-<div id="smoothed-false-colour-maps-and-interpolation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#smoothed-false-colour-maps-and-interpolation" class="anchor"></a><span class="header-section-number">7</span> Smoothed False-Colour Maps and Interpolation</h1>
+<div class="section level2">
+<h2 id="smoothed-false-colour-maps-and-interpolation">
+<span class="header-section-number">7</span> Smoothed False-Colour Maps and Interpolation<a class="anchor" aria-label="anchor" href="#smoothed-false-colour-maps-and-interpolation"></a>
+</h2>
 <p>As we plotted only a few selected wavelenths, figure <a href="#fig:DNA">6.1</a> is quite noisy.
 Smoothing interpolation could help.
 In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. <a href="#fig:DNAsm">7.1</a>).
 This smoothing model can be calculated on the fly, e.g., by using the <code class="sourceCode r"><span class="kw">panel.2dsmoother</span>()</code> wrapper provided by package <strong>latticeExtra</strong>:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>,
-  col.regions <span class="op">=</span> <span class="va">DNAcols</span>,
-  panel <span class="op">=</span> <span class="va">panel.2dsmoother</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>span <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>  col.regions <span class="op">=</span> <span class="va">DNAcols</span>,</span>
+<span>  panel <span class="op">=</span> <span class="va">panel.2dsmoother</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>span <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DNAsm"></span>
 <img src="hySpc-chondro_files/figure-html/DNAsm-1.png" alt="False colour map of the DNA band intensities: smoothed DNA abundance. "><p class="caption">
@@ -575,9 +584,9 @@ Figure 7.1: False colour map of the DNA band intensities: smoothed DNA abundance
 For a full rectangular grid, this corresponds to the usual square/rectangular pixel plot.
 With missing points, differences become clear (fig. <a href="#fig:DNAmissing">7.2</a>):</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>, <span class="fl">500</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>, <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">tmp</span>, col.regions <span class="op">=</span> <span class="va">DNAcols</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">tmp</span>, col.regions <span class="op">=</span> <span class="va">DNAcols</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DNAmissing"></span>
 <img src="hySpc-chondro_files/figure-html/DNAmissing-1.png" alt='Two-dimesional (2D) "constant" interpolation with missing values: omitting missing data points. '><p class="caption">
@@ -585,10 +594,10 @@ Figure 7.2: Two-dimesional (2D) “constant” interpolation with missing values
 </p>
 </div>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plotmap</span><span class="op">(</span><span class="va">tmp</span>,
-  col.regions <span class="op">=</span> <span class="va">DNAcols</span>,
-  panel <span class="op">=</span> <span class="va">panel.voronoi</span>, pch <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"black"</span>, cex <span class="op">=</span> <span class="fl">0.1</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">tmp</span>,</span>
+<span>  col.regions <span class="op">=</span> <span class="va">DNAcols</span>,</span>
+<span>  panel <span class="op">=</span> <span class="va">panel.voronoi</span>, pch <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"black"</span>, cex <span class="op">=</span> <span class="fl">0.1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DNAvoronoi"></span>
 <img src="hySpc-chondro_files/figure-html/DNAvoronoi-1.png" alt='Two-dimesional (2D) "constant" interpolation with missing values: Delaunay triangulation / Voronoi plot.  '><p class="caption">
@@ -598,18 +607,22 @@ Figure 7.3: Two-dimesional (2D) “constant” interpolation with missing values
 <p>The 2D linear interpolation can be done, e.g., by the functions provided by package package <strong>akima</strong>.
 However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with <code class="sourceCode r"><span class="kw">image</span>()</code> (fig. <a href="#fig:DNAinterp">7.4</a>):</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st">"akima"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-  <span class="va">chondro.bilinear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/akima/man/interp.html">interp</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>, nx <span class="op">=</span> <span class="fl">100</span>, ny <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
-
-  <span class="fu"><a href="https://rdrr.io/r/graphics/image.html">image</a></span><span class="op">(</span><span class="va">chondro.bilinear</span>,
-    xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"x"</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"y"</span><span class="op">)</span>,
-    col <span class="op">=</span> <span class="va">DNAcols</span>
-  <span class="op">)</span>
-<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"akima"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">chondro.bilinear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/akima/man/interp.html" class="external-link">interp</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>, nx <span class="op">=</span> <span class="fl">100</span>, ny <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></span><span class="op">(</span><span class="va">chondro.bilinear</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"x"</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="st">"y"</span><span class="op">)</span>,</span>
+<span>    col <span class="op">=</span> <span class="va">DNAcols</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Warning in interp(chondro$x, chondro$y, as.numeric(tmp), nx = 100, ny = 100): collinear points,</span></span>
+<span><span class="co">#&gt; trying to add some jitter to avoid colinearities!</span></span>
+<span><span class="co">#&gt; Warning in interp(chondro$x, chondro$y, as.numeric(tmp), nx = 100, ny = 100): success:</span></span>
+<span><span class="co">#&gt; collinearities reduced through jitter</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DNAinterp"></span>
 <img src="hySpc-chondro_files/figure-html/DNAinterp-1.png" alt="Two-dimensional (2D) interpolation.  "><p class="caption">
@@ -617,121 +630,126 @@ Figure 7.4: Two-dimensional (2D) interpolation.
 </p>
 </div>
 </div>
-<div id="sec:saving-data-set" class="section level1">
-<h1 class="hasAnchor">
-<a href="#sec:saving-data-set" class="anchor"></a><span class="header-section-number">8</span> Saving the data set</h1>
+<div class="section level2">
+<h2 id="sec:saving-data-set">
+<span class="header-section-number">8</span> Saving the data set<a class="anchor" aria-label="anchor" href="#sec:saving-data-set"></a>
+</h2>
 <p>Finally, the example data set is put together and saved.
 In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spectra_to_save</span><span class="op">$</span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="cn">NA</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span><span class="op">)</span>
-<span class="va">spectra_to_save</span><span class="op">$</span><span class="va">clusters</span><span class="op">[</span><span class="op">-</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>
-
-<span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">spectra_to_save</span><span class="op">)</span>
-
-<span class="va">.chondro_scores</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">]</span>
-<span class="va">.chondro_loadings</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">rot</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">]</span>
-<span class="va">.chondro_center</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">center</span>
-<span class="va">.chondro_wl</span> <span class="op">&lt;-</span> <span class="fu">wl</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>
-<span class="va">.chondro_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>, <span class="va">as.expression</span><span class="op">)</span>
-<span class="va">.chondro_extra</span> <span class="op">&lt;-</span> <span class="va">spectra_to_save</span><span class="op">$</span><span class="va">..</span>
-
-<span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">new</span><span class="op">(</span><span class="st">"hyperSpec"</span>,
-  spc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">tcrossprod</a></span><span class="op">(</span><span class="va">.chondro_scores</span>, <span class="va">.chondro_loadings</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">.chondro_center</span>, each <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.chondro_scores</span><span class="op">)</span><span class="op">)</span>,
-  wavelength <span class="op">=</span> <span class="va">.chondro_wl</span>,
-  data <span class="op">=</span> <span class="va">.chondro_extra</span>,
-  labels <span class="op">=</span> <span class="va">.chondro_labels</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">spectra_to_save</span><span class="op">$</span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="cn">NA</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">spectra_to_save</span><span class="op">$</span><span class="va">clusters</span><span class="op">[</span><span class="op">-</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span></span>
+<span></span>
+<span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">spectra_to_save</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">.chondro_scores</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">x</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">.chondro_loadings</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">rot</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">.chondro_center</span> <span class="op">&lt;-</span> <span class="va">pca</span><span class="op">$</span><span class="va">center</span></span>
+<span><span class="va">.chondro_wl</span> <span class="op">&lt;-</span> <span class="fu">wl</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span></span>
+<span><span class="va">.chondro_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span>, <span class="va">as.expression</span><span class="op">)</span></span>
+<span><span class="va">.chondro_extra</span> <span class="op">&lt;-</span> <span class="va">spectra_to_save</span><span class="op">$</span><span class="va">..</span></span>
+<span></span>
+<span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">new</span><span class="op">(</span><span class="st">"hyperSpec"</span>,</span>
+<span>  spc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">tcrossprod</a></span><span class="op">(</span><span class="va">.chondro_scores</span>, <span class="va">.chondro_loadings</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">.chondro_center</span>, each <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.chondro_scores</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  wavelength <span class="op">=</span> <span class="va">.chondro_wl</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">.chondro_extra</span>,</span>
+<span>  labels <span class="op">=</span> <span class="va">.chondro_labels</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>This is the file distributed with package <strong>hyperSpec</strong> as example data set.</p>
 </div>
-<div id="session-info" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#session-info" class="anchor"></a>Session Info</h1>
+<div class="section level2">
+<h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
+</h2>
+<details><p><summary>Session info</summary></p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/sessioninfo/reference/session_info.html">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span>
-<span class="co">#&gt; ─ Session info  🤚🏼  💯  👇🏼   ─────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt;  hash: raised back of hand: medium-light skin tone, hundred points, backhand index pointing down: medium-light skin tone</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  setting  value</span>
-<span class="co">#&gt;  version  R version 4.1.2 (2021-11-01)</span>
-<span class="co">#&gt;  os       macOS Catalina 10.15.7</span>
-<span class="co">#&gt;  system   x86_64, darwin17.0</span>
-<span class="co">#&gt;  ui       X11</span>
-<span class="co">#&gt;  language (EN)</span>
-<span class="co">#&gt;  collate  en_US.UTF-8</span>
-<span class="co">#&gt;  ctype    en_US.UTF-8</span>
-<span class="co">#&gt;  tz       UTC</span>
-<span class="co">#&gt;  date     2021-12-01</span>
-<span class="co">#&gt;  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt;  package        * version      date (UTC) lib source</span>
-<span class="co">#&gt;  brio             1.1.3        2021-11-30 [1] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  callr            3.7.0        2021-04-20 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  cli              3.1.0        2021-10-27 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  colorspace       2.0-2        2021-06-24 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  crayon           1.4.2        2021-10-29 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  desc             1.4.0        2021-09-28 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  diffobj          0.3.5        2021-10-05 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  digest           0.6.28       2021-09-23 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  dplyr            1.0.7        2021-06-18 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  ellipsis         0.3.2        2021-04-29 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  evaluate         0.14         2019-05-28 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  fansi            0.5.0        2021-05-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  farver           2.1.0        2021-02-28 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  generics         0.1.1        2021-10-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  ggplot2        * 3.3.5        2021-06-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  glue             1.5.1        2021-11-30 [1] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  gtable           0.3.0        2019-03-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  hyperSpec      * 0.200.0.9000 2021-11-29 [1] local</span>
-<span class="co">#&gt;  hySpc.testthat   0.2.1.9000   2021-11-29 [1] local</span>
-<span class="co">#&gt;  isoband          0.2.5        2021-07-13 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  jpeg             0.1-9        2021-07-24 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  jsonlite         1.7.2        2020-12-09 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  labeling         0.4.2        2020-10-20 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  lattice        * 0.20-45      2021-09-22 [2] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  latticeExtra   * 0.6-29       2019-12-19 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  lazyeval         0.2.2        2019-03-15 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  lifecycle        1.0.1        2021-09-24 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  magrittr         2.0.1        2020-11-17 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  MASS             7.3-54       2021-05-03 [2] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  Matrix           1.3-4        2021-06-01 [2] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  mgcv             1.8-38       2021-10-06 [2] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  munsell          0.5.0        2018-06-12 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  nlme             3.1-153      2021-09-07 [2] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  pillar           1.6.4        2021-10-18 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  pkgconfig        2.0.3        2019-09-22 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  pkgload          1.2.4        2021-11-30 [1] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  png              0.1-7        2013-12-03 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  praise           1.0.0        2015-08-11 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  processx         3.5.2        2021-04-30 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  ps               1.6.0        2021-02-28 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  purrr            0.3.4        2020-04-17 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  R6               2.5.1        2021-08-19 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  RColorBrewer     1.1-2        2014-12-07 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  rematch2         2.1.2        2020-05-01 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  rlang            0.4.12       2021-10-18 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  rprojroot        2.0.2        2020-11-15 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  rstudioapi       0.13         2020-11-12 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  scales           1.1.1        2020-05-11 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  testthat         3.1.0        2021-10-04 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  tibble           3.1.6        2021-11-07 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  tidyselect       1.1.1        2021-04-30 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  utf8             1.2.2        2021-07-24 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  vctrs            0.3.8        2021-04-29 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  viridisLite      0.4.0        2021-04-13 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  waldo            0.3.1        2021-09-14 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  withr            2.4.3        2021-11-30 [1] CRAN (R 4.1.2)</span>
-<span class="co">#&gt;  xml2             1.3.3        2021-11-30 [1] CRAN (R 4.1.2)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  [1] /Users/runner/work/_temp/Library</span>
-<span class="co">#&gt;  [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/sessioninfo/reference/session_info.html" class="external-link">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
+<span><span class="co">#&gt;  version  R version 4.2.1 (2022-06-23)</span></span>
+<span><span class="co">#&gt;  os       macOS Big Sur ... 10.16</span></span>
+<span><span class="co">#&gt;  system   x86_64, darwin17.0</span></span>
+<span><span class="co">#&gt;  ui       X11</span></span>
+<span><span class="co">#&gt;  language en</span></span>
+<span><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  tz       UTC</span></span>
+<span><span class="co">#&gt;  date     2022-07-15</span></span>
+<span><span class="co">#&gt;  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package       </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version     </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
+<span><span class="co">#&gt;  brio             1.1.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  callr            3.7.1        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  cli              3.3.0        <span style="color: #555555;">2022-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  colorspace       2.0-3        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  crayon           1.5.1        <span style="color: #555555;">2022-03-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  deldir           1.0-6        <span style="color: #555555;">2021-10-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  desc             1.4.1        <span style="color: #555555;">2022-03-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  diffobj          0.3.5        <span style="color: #555555;">2021-10-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  digest           0.6.29       <span style="color: #555555;">2021-12-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  dplyr            1.0.9        <span style="color: #555555;">2022-04-28</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  ellipsis         0.3.2        <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  evaluate         0.15         <span style="color: #555555;">2022-02-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  fansi            1.0.3        <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  farver           2.1.1        <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  fs               1.5.2        <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  generics         0.1.3        <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  ggplot2        * 3.3.6        <span style="color: #555555;">2022-05-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  glue             1.6.2        <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  gtable           0.3.0        <span style="color: #555555;">2019-03-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  hyperSpec      * <span style="color: #BB00BB; font-weight: bold;">0.200.0.9000</span> <span style="color: #555555;">2022-07-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">#&gt;  hySpc.testthat   <span style="color: #BB00BB; font-weight: bold;">0.2.1.9000  </span> <span style="color: #555555;">2022-07-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">#&gt;  interp           1.1-3        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  isoband          0.2.5        <span style="color: #555555;">2021-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  jpeg             0.1-9        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  jsonlite         1.8.0        <span style="color: #555555;">2022-02-22</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  labeling         0.4.2        <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  lattice        * 0.20-45      <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  latticeExtra   * 0.6-30       <span style="color: #555555;">2022-07-04</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  lazyeval         0.2.2        <span style="color: #555555;">2019-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  lifecycle        1.0.1        <span style="color: #555555;">2021-09-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  magrittr         2.0.3        <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  MASS             7.3-57       <span style="color: #555555;">2022-04-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  Matrix           1.4-1        <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  mgcv             1.8-40       <span style="color: #555555;">2022-03-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  munsell          0.5.0        <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  nlme             3.1-157      <span style="color: #555555;">2022-03-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  pillar           1.7.0        <span style="color: #555555;">2022-02-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  pkgconfig        2.0.3        <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  pkgload          1.3.0        <span style="color: #555555;">2022-06-27</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  png              0.1-7        <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  praise           1.0.0        <span style="color: #555555;">2015-08-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  processx         3.7.0        <span style="color: #555555;">2022-07-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  ps               1.7.1        <span style="color: #555555;">2022-06-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  purrr            0.3.4        <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  R6               2.5.1        <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  RColorBrewer     1.1-3        <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  Rcpp             1.0.9        <span style="color: #555555;">2022-07-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  RcppEigen        0.3.3.9.2    <span style="color: #555555;">2022-04-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  rematch2         2.1.2        <span style="color: #555555;">2020-05-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  rlang            1.0.4        <span style="color: #555555;">2022-07-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  rprojroot        2.0.3        <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  scales           1.2.0        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  testthat         3.1.4        <span style="color: #555555;">2022-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  tibble           3.1.7        <span style="color: #555555;">2022-05-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  tidyselect       1.1.2        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  utf8             1.2.2        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  vctrs            0.4.1        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  viridisLite      0.4.0        <span style="color: #555555;">2021-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  waldo            0.4.0        <span style="color: #555555;">2022-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  withr            2.5.0        <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  xml2             1.3.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [1] /Users/runner/work/_temp/Library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [2] /Library/Frameworks/R.framework/Versions/4.2/Resources/library</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre></div>
+</details>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 </div>
   </div>
 
@@ -746,11 +764,13 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 
 
       <footer><div class="copyright">
-  <p>Developed by Claudia Beleites, Erick Oduniyi, <a href="https://orcid.org/0000-0002-9500-5167">Vilmantas Gegzna</a>.</p>
+  <p></p>
+<p>Developed by Claudia Beleites, Erick Oduniyi, <a href="https://orcid.org/0000-0002-9500-5167" class="external-link">Vilmantas Gegzna</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
@@ -758,6 +778,8 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 
   
 
+
+  
 
   </body>
 </html>
