@@ -305,13 +305,13 @@ irregular_grid_b <- as.ggplot(
 <!-- --------------------------------------------------------------------- -->
 
 
-Such slight rounding errors can be corrected by `fitraster()`{.r} or `makeraster()`{.r}.
-Function `fitraster()`{.r} needs the step size of the raster and a starting coordinate, whereas `makeraster()`{.r} tries to guess these parameters for `fitraster()`{.r}.
-As long as just a few points are affected by rounding errors, `makeraster()`{.r} works fine:
+Such slight rounding errors can be corrected by `raster_fit()`{.r} or `raster_make()`{.r}.
+Function `raster_fit()`{.r} needs the step size of the raster and a starting coordinate, whereas `raster_make()`{.r} tries to guess these parameters for `raster_fit()`{.r}.
+As long as just a few points are affected by rounding errors, `raster_make()`{.r} works fine:
 
 ```{r}
-chondro$x <- fitraster(chondro$x)$x
-chondro$y <- fitraster(chondro$y)$x
+chondro$x <- raster_fit(chondro$x)$x
+chondro$y <- raster_fit(chondro$y)$x
 ```
 the result is shown in figure \@ref(fig:irregular-c).
 
@@ -483,7 +483,7 @@ pairs(scores[[, , 1:7]], pch = 19, cex = 0.5)
 ```
 
 Now the spectra can be found either by plotting two scores against each other (by `plot()`{.r}) and identifying with `identify()`{.r}, or they can be identified in the score map by `map.identify()`{.r}.
-There is also a function to identify spectra in a spectra plot, `spc.identify()`{.r}, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.
+There is also a function to identify spectra in a spectra plot, `identify_spc()`{.r}, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.
 
 ```{r pca-identify, eval=FALSE}
 ## omit the first 4 PCs
@@ -619,7 +619,7 @@ CAPTION <- "Hierarchical cluster analysis: the dendrogram."
 ```{r dend, fig.cap=CAPTION}
 par(xpd = TRUE) # allow plotting the markers into the margin
 plot(dendrogram, labels = FALSE, hang = -1)
-mark.dendrogram(dendrogram, chondro$clusters, col = cols)
+mark_groups_in_dendrogram(dendrogram, chondro$clusters, col = cols)
 ```
 
 Figure \@ref(fig:dend) shows the dendrogram and \@ref(fig:clustmap) the resulting cluster map.
@@ -778,8 +778,12 @@ This is the file distributed with package **hyperSpec** as example data set.
 
 # Session Info {-}
 
+<details><summary>Session info</summary>
+
 ```{r session-info-chondro, paged.print=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
+
+</details>
 
 # References {-}
