@@ -77,15 +77,15 @@
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
-      <li>Spectroscopy <span class="math inline">\(\cdot\)</span> Imaging, IPHT, Jena/Germany (2008–2017)</li>
-      <li>ÖPV, JKI, Berlin/Germany (2017–2019)</li>
-      <li>Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 – 2020)</li>
-      <li>Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)</li>
-      </ol>
+<li>Spectroscopy <span class="math inline">\(\cdot\)</span> Imaging, IPHT, Jena/Germany (2008–2017)</li>
+<li>ÖPV, JKI, Berlin/Germany (2017–2019)</li>
+<li>Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 – 2020)</li>
+<li>Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)</li>
+</ol>
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 data-toc-skip class="date">2022-07-15</h4>
+            <h4 data-toc-skip class="date">2022-08-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/r-hyperspec/hySpc.chondro/blob/HEAD/vignettes/hySpc-chondro.Rmd" class="external-link"><code>vignettes/hySpc-chondro.Rmd</code></a></small>
       <div class="hidden name"><code>hySpc-chondro.Rmd</code></div>
@@ -96,7 +96,7 @@
     
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<div class="section level2">
+<div class="section level2" number="1">
 <h2 id="introduction">
 <span class="header-section-number">1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -125,7 +125,7 @@ It shows a complete data analysis work flow on a Raman map demonstrating frequen
 <p>showing how to use data analysis procedures provided by R and other
 packages.</p>
 </div>
-<div class="section level2">
+<div class="section level2" number="2">
 <h2 id="the-data-set">
 <span class="header-section-number">2</span> The Data Set<a class="anchor" aria-label="anchor" href="#the-data-set"></a>
 </h2>
@@ -158,16 +158,16 @@ The frame indicates the measurement area of <span class="math inline">\(35×25 \
 <strong>Spectrometer:</strong> Renishaw InVia</li>
 </ul>
 </div>
-<div class="section level2">
+<div class="section level2" number="3">
 <h2 id="data-import">
 <span class="header-section-number">3</span> Data Import<a class="anchor" aria-label="anchor" href="#data-import"></a>
 </h2>
 <p>Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file.
 Raman maps are exported having four columns, <em>y</em>, <em>x</em>, <em>raman shift</em>, and <em>intensity</em>.
-Package <strong>hySpc.read.txt</strong> comes with a function to import such files, <code class="sourceCode r">hySpc.read.txt<span class="op">::</span><span class="kw">read_txt_Renishaw</span>()</code>.
-The function assumes a map as default, but can also handle single spectra (<code class="sourceCode r">data =<span class="st"> "spc"</span></code>), time series (<code class="sourceCode r">data =<span class="st"> "ts"</span></code>), and depth profiles (<code class="sourceCode r">data =<span class="st"> "depth"</span></code>).
+Package <strong>hySpc.read.txt</strong> comes with a function to import such files, <code class="sourceCode r">hySpc.read.txt<span class="sc">::</span><span class="fu">read_txt_Renishaw</span>()</code>.
+The function assumes a map as default, but can also handle single spectra (<code class="sourceCode r">data <span class="ot">=</span> <span class="st">"spc"</span></code>), time series (<code class="sourceCode r">data <span class="ot">=</span> <span class="st">"ts"</span></code>), and depth profiles (<code class="sourceCode r">data <span class="ot">=</span> <span class="st">"depth"</span></code>).
 In addition, large files may be processed in chunks.
-In order to speed up the reading <code class="sourceCode r"><span class="kw">read_txt_Renishaw</span>()</code> does not allow missing values, but it does work with <code class="sourceCode r"><span class="ot">NA</span></code>.</p>
+In order to speed up the reading <code class="sourceCode r"><span class="fu">read_txt_Renishaw</span>()</code> does not allow missing values, but it does work with <code class="sourceCode r"><span class="cn">NA</span></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download file from:</span></span>
 <span><span class="va">raw_data_url</span> <span class="op">&lt;-</span></span>
@@ -205,17 +205,17 @@ spectra.
 Figure 3.2: The sum intensity of the raw spectra.
 </p>
 </div>
-<p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> squeezes all spectral intensities into a summary characteristic for the whole spectrum.
-This function defaults to the <code class="sourceCode r"><span class="kw">mean</span>()</code>.
+<p>Function <code class="sourceCode r"><span class="fu">plotmap</span>()</code> squeezes all spectral intensities into a summary characteristic for the whole spectrum.
+This function defaults to the <code class="sourceCode r"><span class="fu">mean</span>()</code>.
 Further arguments that should be handed to this function can be given in list <code class="sourceCode r">func.args</code>.
-As the raw data contains <code class="sourceCode r"><span class="ot">NA</span></code>s due to deleting cosmic ray spikes, this argument is needed here.</p>
+As the raw data contains <code class="sourceCode r"><span class="cn">NA</span></code>s due to deleting cosmic ray spikes, this argument is needed here.</p>
 </div>
-<div class="section level2">
+<div class="section level2" number="4">
 <h2 id="preprocessing">
 <span class="header-section-number">4</span> Preprocessing<a class="anchor" aria-label="anchor" href="#preprocessing"></a>
 </h2>
 <p>As usual in Raman spectroscopy of biological tissues, the spectra need some preprocessing.</p>
-<div class="section level3">
+<div class="section level3" number="4.1">
 <h3 id="aligning-the-spatial-grid">
 <span class="header-section-number">4.1</span> Aligning the Spatial Grid<a class="anchor" aria-label="anchor" href="#aligning-the-spatial-grid"></a>
 </h3>
@@ -269,9 +269,9 @@ Rounding erros in the point coordinates of lateral measurement grid:
 </p>
 </div>
 <!-- --------------------------------------------------------------------- -->
-<p>Such slight rounding errors can be corrected by <code class="sourceCode r"><span class="kw">raster_fit</span>()</code> or <code class="sourceCode r"><span class="kw">raster_make</span>()</code>.
-Function <code class="sourceCode r"><span class="kw">raster_fit</span>()</code> needs the step size of the raster and a starting coordinate, whereas <code class="sourceCode r"><span class="kw">raster_make</span>()</code> tries to guess these parameters for <code class="sourceCode r"><span class="kw">raster_fit</span>()</code>.
-As long as just a few points are affected by rounding errors, <code class="sourceCode r"><span class="kw">raster_make</span>()</code> works fine:</p>
+<p>Such slight rounding errors can be corrected by <code class="sourceCode r"><span class="fu">raster_fit</span>()</code> or <code class="sourceCode r"><span class="fu">raster_make</span>()</code>.
+Function <code class="sourceCode r"><span class="fu">raster_fit</span>()</code> needs the step size of the raster and a starting coordinate, whereas <code class="sourceCode r"><span class="fu">raster_make</span>()</code> tries to guess these parameters for <code class="sourceCode r"><span class="fu">raster_fit</span>()</code>.
+As long as just a few points are affected by rounding errors, <code class="sourceCode r"><span class="fu">raster_make</span>()</code> works fine:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">raster_fit</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
 <span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">raster_fit</span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span></code></pre></div>
@@ -310,14 +310,14 @@ Rounding erros in the point coordinates of lateral measurement grid.
 <!-- ===================================================================== -->
 <!-- ===================================================================== -->
 </div>
-<div class="section level3">
+<div class="section level3" number="4.2">
 <h3 id="spectral-smoothing">
 <span class="header-section-number">4.2</span> Spectral Smoothing<a class="anchor" aria-label="anchor" href="#spectral-smoothing"></a>
 </h3>
-<p>As the overview shows that the spectra contain <code class="sourceCode r"><span class="ot">NA</span></code>s (from cosmic spike removal that was done previously), the first step is to remove these.
+<p>As the overview shows that the spectra contain <code class="sourceCode r"><span class="cn">NA</span></code>s (from cosmic spike removal that was done previously), the first step is to remove these.
 Also, the wavelength axis of the raw spectra is not evenly spaced (the data points are between 0.85 and 1 <span class="math inline">\(cm^{-1}\)</span> apart from each other).
 Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
-All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="kw">spc_loess</span>()</code>.
+All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="fu">spc_loess</span>()</code>.
 The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span>, or 4 <span class="math inline">\(cm^{-1}\)</span> data point spacing.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="fu">spc_loess</span><span class="op">(</span><span class="va">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -332,17 +332,17 @@ They are stored for saving as the distributed demo data:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spectra_to_save</span> <span class="op">&lt;-</span> <span class="va">chondro</span></span></code></pre></div>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.3">
 <h3 id="baseline-correction">
 <span class="header-section-number">4.3</span> Baseline Correction<a class="anchor" aria-label="anchor" href="#baseline-correction"></a>
 </h3>
-<p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
+<p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="fu">spc_fit_poly_below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
 The default is a linear baseline, which is appropriate in our case:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baselines</span> <span class="op">&lt;-</span> <span class="fu">spc_fit_poly_below</span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span></span>
 <span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span> <span class="op">-</span> <span class="va">baselines</span></span></code></pre></div>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.4">
 <h3 id="normalization">
 <span class="header-section-number">4.4</span> Normalization<a class="anchor" aria-label="anchor" href="#normalization"></a>
 </h3>
@@ -361,7 +361,7 @@ If needed, this collinearity can be broken by removing one of the variates invol
 Note that the <code class="sourceCode r">chondro</code> object shipped with package <strong>hyperSpec</strong> set has multiple collinearities as only the first 10 principal components are shipped (see below).</p>
 <p>For the results of these preprocessing steps, see figure <a href="#fig:bl-norm">4.5</a>.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.5">
 <h3 id="subtracting-the-overall-composition">
 <span class="header-section-number">4.5</span> Subtracting the Overall Composition<a class="anchor" aria-label="anchor" href="#subtracting-the-overall-composition"></a>
 </h3>
@@ -381,13 +381,13 @@ Figure 4.6: The spectra after subtracting the 5<sup>th</sup> percentile spectrum
 <p>The resulting data set is shown in figure <a href="#fig:bl-perc">4.6</a>.
 Some interesting differences start to show up: there are distinct lipid bands in some but not all of the spectra.</p>
 </div>
-<div class="section level3">
+<div class="section level3" number="4.6">
 <h3 id="outlier-removal-by-principal-component-analysis-pca">
 <span class="header-section-number">4.6</span> Outlier Removal by Principal Component Analysis (PCA)<a class="anchor" aria-label="anchor" href="#outlier-removal-by-principal-component-analysis-pca"></a>
 </h3>
 <p>PCA is a technique that decomposes the data into scores and loadings (virtual spectra).
 It is known to be quite sensitive to outliers.
-Thus, I use it for outlier detection. The resulting scores and loadings are put again into <code class="sourceCode r">hyperSpec</code> objects by <code class="sourceCode r"><span class="kw">decomposition</span>()</code>:</p>
+Thus, I use it for outlier detection. The resulting scores and loadings are put again into <code class="sourceCode r">hyperSpec</code> objects by <code class="sourceCode r"><span class="fu">decomposition</span>()</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="va">chondro</span>, center <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -406,11 +406,11 @@ Thus, I use it for outlier detection. The resulting scores and loadings are put 
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pca-pairs"></span>
 <img src="hySpc-chondro_files/figure-html/pca-pairs-1.png" alt="The `pairs()`{.r} plot of the first 7 scores. "><p class="caption">
-Figure 4.7: The <code class="sourceCode r"><span class="kw">pairs</span>()</code> plot of the first 7 scores.
+Figure 4.7: The <code class="sourceCode r"><span class="fu">pairs</span>()</code> plot of the first 7 scores.
 </p>
 </div>
-<p>Now the spectra can be found either by plotting two scores against each other (by <code class="sourceCode r"><span class="kw">plot</span>()</code>) and identifying with <code class="sourceCode r"><span class="kw">identify</span>()</code>, or they can be identified in the score map by <code class="sourceCode r"><span class="kw">map.identify</span>()</code>.
-There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="kw">identify_spc</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
+<p>Now the spectra can be found either by plotting two scores against each other (by <code class="sourceCode r"><span class="fu">plot</span>()</code>) and identifying with <code class="sourceCode r"><span class="fu">identify</span>()</code>, or they can be identified in the score map by <code class="sourceCode r"><span class="fu">map.identify</span>()</code>.
+There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="fu">identify_spc</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## omit the first 4 PCs</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">map.identify</span><span class="op">(</span><span class="va">scores</span><span class="op">[</span>, , <span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
@@ -444,7 +444,7 @@ There is also a function to identify spectra in a spectra plot, <code class="sou
 Figure 4.8: The suspected outlier spectra.
 </p>
 </div>
-<p>and also by looking where these spectra appear in the scores <code class="sourceCode r"><span class="kw">pairs</span>()</code> plot (figure <a href="#fig:pca-pairs-2">4.9</a>):</p>
+<p>and also by looking where these spectra appear in the scores <code class="sourceCode r"><span class="fu">pairs</span>()</code> plot (figure <a href="#fig:pca-pairs-2">4.9</a>):</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">46L</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pch</span><span class="op">[</span><span class="va">out</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">19L</span></span>
@@ -453,7 +453,7 @@ Figure 4.8: The suspected outlier spectra.
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pca-pairs-2"></span>
 <img src="hySpc-chondro_files/figure-html/pca-pairs-2-1.png" alt="The `pairs()`{.r} plot of the first 7 scores with suspected outliers. "><p class="caption">
-Figure 4.9: The <code class="sourceCode r"><span class="kw">pairs</span>()</code> plot of the first 7 scores with suspected outliers.
+Figure 4.9: The <code class="sourceCode r"><span class="fu">pairs</span>()</code> plot of the first 7 scores with suspected outliers.
 </p>
 </div>
 <!-- ```{r pca-pairs2} -->
@@ -468,7 +468,7 @@ Figure 4.9: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 <code class="sourceCode R"><span><span class="va">chondro</span> <span class="op">&lt;-</span> <span class="va">chondro</span><span class="op">[</span><span class="op">-</span><span class="va">out</span><span class="op">]</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="5">
 <h2 id="hierarchical-cluster-analysis-hca">
 <span class="header-section-number">5</span> Hierarchical Cluster Analysis (HCA)<a class="anchor" aria-label="anchor" href="#hierarchical-cluster-analysis-hca"></a>
 </h2>
@@ -476,8 +476,8 @@ Figure 4.9: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 a dendrogram, a graph stating at which level two objects are similar
 and thus grouped together.</p>
 <p>The first step in HCA is the choice of the distance.
-The R function <code class="sourceCode r"><span class="kw">dist</span>()</code> offers a variety of distance measures to be computed.
-The so-called <strong>Pearson</strong> distance <span class="math inline">\(D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}\)</span> is popular in data analysis of vibrational spectra and is provided by package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">pearson.dist</span>()</code> function.</p>
+The R function <code class="sourceCode r"><span class="fu">dist</span>()</code> offers a variety of distance measures to be computed.
+The so-called <strong>Pearson</strong> distance <span class="math inline">\(D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}\)</span> is popular in data analysis of vibrational spectra and is provided by package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="fu">pearson.dist</span>()</code> function.</p>
 <p>Also for computing the dendrogram, a number of choices are available.
 Here we choose <strong>Ward</strong>’s method, and, as it uses <strong>Euclid</strong>ean distance for calculating the dendrogram, <strong>Euclid</strong>ean distance also for the distance matrix:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -496,7 +496,7 @@ Figure 5.1: Dendogram.
 <code class="sourceCode R"><span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cutree.html" class="external-link">cutree</a></span><span class="op">(</span><span class="va">dendrogram</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span><span class="op">)</span></span></code></pre></div>
 <p>The result for <span class="math inline">\(k\)</span> = 3 clusters is plotted as a map (figure <a href="#fig:clustmap">5.2</a>).
-If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and <code class="sourceCode r">hyperSpec</code>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method uses the levels of the factor for the legend.</p>
+If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and <code class="sourceCode r">hyperSpec</code>’s <code class="sourceCode r"><span class="fu">levelplot</span>()</code> method uses the levels of the factor for the legend.</p>
 <p>Thus meaningful names are assigned</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span><span class="op">)</span></span></code></pre></div>
@@ -523,7 +523,7 @@ Figure 5.3: Hierarchical cluster analysis: the dendrogram.
 <p>Figure <a href="#fig:dend">5.3</a> shows the dendrogram and <a href="#fig:clustmap">5.2</a> the resulting cluster map.
 The three clusters correspond to the cartilage matrix, the lacuna and the cells.
 The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.</p>
-<p>We can plot the cluster mean spectra <span class="math inline">\(\pm\)</span> 1 standard deviation using <code class="sourceCode r"><span class="kw">aggregate</span>()</code> (see figure <a href="#fig:clustmeans">5.4</a>):</p>
+<p>We can plot the cluster mean spectra <span class="math inline">\(\pm\)</span> 1 standard deviation using <code class="sourceCode r"><span class="fu">aggregate</span>()</code> (see figure <a href="#fig:clustmeans">5.4</a>):</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cluster.means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">chondro</span>, <span class="va">chondro</span><span class="op">$</span><span class="va">clusters</span>, <span class="va">mean_pm_sd</span><span class="op">)</span></span>
 <span></span>
@@ -540,7 +540,7 @@ The blue cluster shows distinct lipid bands, the yellow cluster collagen, and th
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
+<div class="section level2" number="6">
 <h2 id="plotting-a-false-colour-map-of-certain-spectral-regions">
 <span class="header-section-number">6</span> Plotting a False-Colour Map of Certain Spectral Regions<a class="anchor" aria-label="anchor" href="#plotting-a-false-colour-map-of-certain-spectral-regions"></a>
 </h2>
@@ -561,14 +561,14 @@ Figure 6.1: False color map of DNA.
 <p>The result is shown in figure <a href="#fig:DNA">6.1</a>.
 While the nucleus of the right cell shows up nicely, only low concentration remainders are detected of the left cell.</p>
 </div>
-<div class="section level2">
+<div class="section level2" number="7">
 <h2 id="smoothed-false-colour-maps-and-interpolation">
 <span class="header-section-number">7</span> Smoothed False-Colour Maps and Interpolation<a class="anchor" aria-label="anchor" href="#smoothed-false-colour-maps-and-interpolation"></a>
 </h2>
 <p>As we plotted only a few selected wavelenths, figure <a href="#fig:DNA">6.1</a> is quite noisy.
 Smoothing interpolation could help.
 In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. <a href="#fig:DNAsm">7.1</a>).
-This smoothing model can be calculated on the fly, e.g., by using the <code class="sourceCode r"><span class="kw">panel.2dsmoother</span>()</code> wrapper provided by package <strong>latticeExtra</strong>:</p>
+This smoothing model can be calculated on the fly, e.g., by using the <code class="sourceCode r"><span class="fu">panel.2dsmoother</span>()</code> wrapper provided by package <strong>latticeExtra</strong>:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plotmap</span><span class="op">(</span><span class="va">chondro</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>  col.regions <span class="op">=</span> <span class="va">DNAcols</span>,</span>
@@ -605,7 +605,7 @@ Figure 7.3: Two-dimesional (2D) “constant” interpolation with missing values
 </p>
 </div>
 <p>The 2D linear interpolation can be done, e.g., by the functions provided by package package <strong>akima</strong>.
-However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with <code class="sourceCode r"><span class="kw">image</span>()</code> (fig. <a href="#fig:DNAinterp">7.4</a>):</p>
+However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with <code class="sourceCode r"><span class="fu">image</span>()</code> (fig. <a href="#fig:DNAinterp">7.4</a>):</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"akima"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">chondro</span><span class="op">[[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
@@ -630,7 +630,7 @@ Figure 7.4: Two-dimensional (2D) interpolation.
 </p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2" number="8">
 <h2 id="sec:saving-data-set">
 <span class="header-section-number">8</span> Saving the data set<a class="anchor" aria-label="anchor" href="#sec:saving-data-set"></a>
 </h2>
@@ -661,88 +661,90 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><p><summary>Session info</summary></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<details><summary>
+Session info
+</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://r-lib.github.io/sessioninfo/reference/session_info.html" class="external-link">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
 <span><span class="co">#&gt;  version  R version 4.2.1 (2022-06-23)</span></span>
-<span><span class="co">#&gt;  os       macOS Big Sur ... 10.16</span></span>
-<span><span class="co">#&gt;  system   x86_64, darwin17.0</span></span>
+<span><span class="co">#&gt;  os       Ubuntu 20.04.4 LTS</span></span>
+<span><span class="co">#&gt;  system   x86_64, linux-gnu</span></span>
 <span><span class="co">#&gt;  ui       X11</span></span>
 <span><span class="co">#&gt;  language en</span></span>
-<span><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
-<span><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
+<span><span class="co">#&gt;  collate  C.UTF-8</span></span>
+<span><span class="co">#&gt;  ctype    C.UTF-8</span></span>
 <span><span class="co">#&gt;  tz       UTC</span></span>
-<span><span class="co">#&gt;  date     2022-07-15</span></span>
-<span><span class="co">#&gt;  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt;  date     2022-08-06</span></span>
+<span><span class="co">#&gt;  pandoc   2.14.2 @ /usr/bin/ (via rmarkdown)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package       </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version     </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
-<span><span class="co">#&gt;  brio             1.1.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  callr            3.7.1        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  cli              3.3.0        <span style="color: #555555;">2022-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  colorspace       2.0-3        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  crayon           1.5.1        <span style="color: #555555;">2022-03-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  deldir           1.0-6        <span style="color: #555555;">2021-10-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  desc             1.4.1        <span style="color: #555555;">2022-03-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  diffobj          0.3.5        <span style="color: #555555;">2021-10-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  digest           0.6.29       <span style="color: #555555;">2021-12-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  dplyr            1.0.9        <span style="color: #555555;">2022-04-28</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  ellipsis         0.3.2        <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  evaluate         0.15         <span style="color: #555555;">2022-02-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  fansi            1.0.3        <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  farver           2.1.1        <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  fs               1.5.2        <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  generics         0.1.3        <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  ggplot2        * 3.3.6        <span style="color: #555555;">2022-05-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  glue             1.6.2        <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  gtable           0.3.0        <span style="color: #555555;">2019-03-25</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  hyperSpec      * <span style="color: #BB00BB; font-weight: bold;">0.200.0.9000</span> <span style="color: #555555;">2022-07-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
-<span><span class="co">#&gt;  hySpc.testthat   <span style="color: #BB00BB; font-weight: bold;">0.2.1.9000  </span> <span style="color: #555555;">2022-07-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
-<span><span class="co">#&gt;  interp           1.1-3        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  isoband          0.2.5        <span style="color: #555555;">2021-07-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  jpeg             0.1-9        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  jsonlite         1.8.0        <span style="color: #555555;">2022-02-22</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  labeling         0.4.2        <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  lattice        * 0.20-45      <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  latticeExtra   * 0.6-30       <span style="color: #555555;">2022-07-04</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  lazyeval         0.2.2        <span style="color: #555555;">2019-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  lifecycle        1.0.1        <span style="color: #555555;">2021-09-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  magrittr         2.0.3        <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  MASS             7.3-57       <span style="color: #555555;">2022-04-22</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  Matrix           1.4-1        <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  mgcv             1.8-40       <span style="color: #555555;">2022-03-29</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  munsell          0.5.0        <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  nlme             3.1-157      <span style="color: #555555;">2022-03-25</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
-<span><span class="co">#&gt;  pillar           1.7.0        <span style="color: #555555;">2022-02-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  pkgconfig        2.0.3        <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  pkgload          1.3.0        <span style="color: #555555;">2022-06-27</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  png              0.1-7        <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  praise           1.0.0        <span style="color: #555555;">2015-08-11</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  processx         3.7.0        <span style="color: #555555;">2022-07-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  ps               1.7.1        <span style="color: #555555;">2022-06-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  purrr            0.3.4        <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  R6               2.5.1        <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  RColorBrewer     1.1-3        <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  Rcpp             1.0.9        <span style="color: #555555;">2022-07-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  RcppEigen        0.3.3.9.2    <span style="color: #555555;">2022-04-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  rematch2         2.1.2        <span style="color: #555555;">2020-05-01</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  rlang            1.0.4        <span style="color: #555555;">2022-07-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  rprojroot        2.0.3        <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  scales           1.2.0        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  testthat         3.1.4        <span style="color: #555555;">2022-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  tibble           3.1.7        <span style="color: #555555;">2022-05-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  tidyselect       1.1.2        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  utf8             1.2.2        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  vctrs            0.4.1        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  viridisLite      0.4.0        <span style="color: #555555;">2021-04-13</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  waldo            0.4.0        <span style="color: #555555;">2022-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  withr            2.5.0        <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
-<span><span class="co">#&gt;  xml2             1.3.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.2.0)</span></span></span>
+<span><span class="co">#&gt;  brio             1.1.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  callr            3.7.1        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  cli              3.3.0        <span style="color: #555555;">2022-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  colorspace       2.0-3        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  crayon           1.5.1        <span style="color: #555555;">2022-03-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  deldir           1.0-6        <span style="color: #555555;">2021-10-23</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  desc             1.4.1        <span style="color: #555555;">2022-03-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  diffobj          0.3.5        <span style="color: #555555;">2021-10-05</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  digest           0.6.29       <span style="color: #555555;">2021-12-01</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  dplyr            1.0.9        <span style="color: #555555;">2022-04-28</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  ellipsis         0.3.2        <span style="color: #555555;">2021-04-29</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  evaluate         0.15         <span style="color: #555555;">2022-02-18</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  fansi            1.0.3        <span style="color: #555555;">2022-03-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  farver           2.1.1        <span style="color: #555555;">2022-07-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  fs               1.5.2        <span style="color: #555555;">2021-12-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  generics         0.1.3        <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  ggplot2        * 3.3.6        <span style="color: #555555;">2022-05-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  glue             1.6.2        <span style="color: #555555;">2022-02-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  gtable           0.3.0        <span style="color: #555555;">2019-03-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  hyperSpec      * <span style="color: #BB00BB; font-weight: bold;">0.200.0.9000</span> <span style="color: #555555;">2022-08-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">Custom</span></span></span>
+<span><span class="co">#&gt;  hySpc.testthat   <span style="color: #BB00BB; font-weight: bold;">0.2.1.9000  </span> <span style="color: #555555;">2022-08-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">Custom</span></span></span>
+<span><span class="co">#&gt;  interp           1.1-3        <span style="color: #555555;">2022-07-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  isoband          0.2.5        <span style="color: #555555;">2021-07-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  jpeg             0.1-9        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  jsonlite         1.8.0        <span style="color: #555555;">2022-02-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  labeling         0.4.2        <span style="color: #555555;">2020-10-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lattice        * 0.20-45      <span style="color: #555555;">2021-09-22</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  latticeExtra   * 0.6-30       <span style="color: #555555;">2022-07-04</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lazyeval         0.2.2        <span style="color: #555555;">2019-03-15</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lifecycle        1.0.1        <span style="color: #555555;">2021-09-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  magrittr         2.0.3        <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  MASS             7.3-57       <span style="color: #555555;">2022-04-22</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  Matrix           1.4-1        <span style="color: #555555;">2022-03-23</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  mgcv             1.8-40       <span style="color: #555555;">2022-03-29</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  munsell          0.5.0        <span style="color: #555555;">2018-06-12</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  nlme             3.1-157      <span style="color: #555555;">2022-03-25</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.2.1)</span></span></span>
+<span><span class="co">#&gt;  pillar           1.8.0        <span style="color: #555555;">2022-07-18</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pkgconfig        2.0.3        <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pkgload          1.3.0        <span style="color: #555555;">2022-06-27</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  png              0.1-7        <span style="color: #555555;">2013-12-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  praise           1.0.0        <span style="color: #555555;">2015-08-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  processx         3.7.0        <span style="color: #555555;">2022-07-07</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  ps               1.7.1        <span style="color: #555555;">2022-06-18</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  purrr            0.3.4        <span style="color: #555555;">2020-04-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R6               2.5.1        <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  RColorBrewer     1.1-3        <span style="color: #555555;">2022-04-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  Rcpp             1.0.9        <span style="color: #555555;">2022-07-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  RcppEigen        0.3.3.9.2    <span style="color: #555555;">2022-04-08</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rematch2         2.1.2        <span style="color: #555555;">2020-05-01</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rlang            1.0.4        <span style="color: #555555;">2022-07-12</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rprojroot        2.0.3        <span style="color: #555555;">2022-04-02</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  scales           1.2.0        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  testthat         3.1.4        <span style="color: #555555;">2022-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tibble           3.1.8        <span style="color: #555555;">2022-07-22</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tidyselect       1.1.2        <span style="color: #555555;">2022-02-21</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  utf8             1.2.2        <span style="color: #555555;">2021-07-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  vctrs            0.4.1        <span style="color: #555555;">2022-04-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  viridisLite      0.4.0        <span style="color: #555555;">2021-04-13</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  waldo            0.4.0        <span style="color: #555555;">2022-03-16</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  withr            2.5.0        <span style="color: #555555;">2022-03-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  xml2             1.3.3        <span style="color: #555555;">2021-11-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [1] /Users/runner/work/_temp/Library</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [2] /Library/Frameworks/R.framework/Versions/4.2/Resources/library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [1] /tmp/RtmpEoIyGu/temp_libpath339f7548407e</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [2] /home/runner/work/_temp/Library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [3] /opt/R/4.2.1/lib/R/library</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre></div>
 </details>
@@ -770,7 +772,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
