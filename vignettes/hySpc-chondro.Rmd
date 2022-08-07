@@ -225,10 +225,10 @@ CAPTION <- "The sum intensity of the raw spectra."
 seq_palette <- colorRampPalette(c("white", "dark green"), space = "Lab")
 ```
 ```{r rawmap, fig.cap=CAPTION}
-plotmap(chondro, func.args = list(na.rm = TRUE), col.regions = seq_palette(20))
+plot_map(chondro, func.args = list(na.rm = TRUE), col.regions = seq_palette(20))
 ```
 
-Function `plotmap()`{.r} squeezes all spectral intensities into a summary characteristic for the whole spectrum.
+Function `plot_map()`{.r} squeezes all spectral intensities into a summary characteristic for the whole spectrum.
 This function defaults to the `mean()`{.r}.
 Further arguments that should be handed to this function can be given in list `func.args`{.r}.
 As the raw data contains `NA`{.r}s due to deleting cosmic ray spikes, this argument is needed here.
@@ -249,7 +249,7 @@ complete (square) is retained but only few positions on this grid.
 
 Occasionally, numeric or rounding errors will lead to seemingly irregular spacing of the data
 points.
-This is most obvious in false-colour maps of the sample (fig. \@ref(fig:rawmap), as `plotmap`{.r} by default uses `panel.levelplot.raster`{.r}, which assumes a regular grid is underlying the data.
+This is most obvious in false-colour maps of the sample (fig. \@ref(fig:rawmap), as `plot_map`{.r} by default uses `panel.levelplot.raster`{.r}, which assumes a regular grid is underlying the data.
 The symptoms are warnings "`'x' values are not equispaced; output may be wrong`" and white stripes in the false colour map (fig. \@ref(fig:irregular-a)), which occur even thought the points are almost at their correct place (fig. \@ref(fig:irregular-b)).
 
 
@@ -269,12 +269,12 @@ Rounding erros in the point coordinates of lateral measurement grid:
 ```
 
 ```{r irregular-a, fig.cap=CAPTION}
-plotmap(chondro, col.regions = seq_palette(20))
+plot_map(chondro, col.regions = seq_palette(20))
 ```
 
 ```{r irregular-a-sub, include=FALSE}
 # For subplot A
-irregular_grid_a <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
+irregular_grid_a <- as.ggplot(plot_map(chondro, col.regions = seq_palette(20)))
 ```
 <!-- --------------------------------------------------------------------- -->
 
@@ -289,7 +289,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 
 ```{r irregular-b, fig.cap=CAPTION}
 library("latticeExtra")
-plotmap(chondro,
+plot_map(chondro,
   col.regions = seq_palette(20), panel = panel.levelplot.points,
   col = NA, pch = 22, cex = 1.9
 )
@@ -298,7 +298,7 @@ plotmap(chondro,
 ```{r irregular-b-sub, include=FALSE}
 # For subplot B
 irregular_grid_b <- as.ggplot(
-  plotmap(chondro, col.regions = seq_palette(20), panel = panel.levelplot.points,
+  plot_map(chondro, col.regions = seq_palette(20), panel = panel.levelplot.points,
     col = NA, pch = 22, cex = 1.9)
 )
 ```
@@ -324,12 +324,12 @@ Rounding erros in the point coordinates of lateral measurement grid:
 ```
 
 ```{r irregular-c, fig.cap=CAPTION}
-plotmap(chondro, col.regions = seq_palette(20))
+plot_map(chondro, col.regions = seq_palette(20))
 ```
 
 ```{r irregular-c-sub, include=FALSE}
 # For subplot C
-irregular_grid_c <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
+irregular_grid_c <- as.ggplot(plot_map(chondro, col.regions = seq_palette(20)))
 ```
 <!-- --------------------------------------------------------------------- -->
 
@@ -606,7 +606,7 @@ CAPTION <- "Hierarchical cluster analysis: the cluster map for $k=3$ clusters. "
 ```
 
 ```{r clustmap, fig.cap=CAPTION}
-print(plotmap(chondro, clusters ~ x * y, col.regions = cols))
+print(plot_map(chondro, clusters ~ x * y, col.regions = cols))
 ```
 
 The cluster membership can also be marked in the dendrogram:
@@ -658,7 +658,7 @@ CAPTION <- "False color map of DNA.  "
 
 ```{r DNA, fig.cap=CAPTION}
 DNAcols <- colorRampPalette(c("white", "gold", "dark green"), space = "Lab")(20)
-plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
+plot_map(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
   col.regions = DNAcols
 )
 ```
@@ -681,7 +681,7 @@ CAPTION <- "False colour map of the DNA band intensities: smoothed DNA abundance
 ```
 
 ```{r DNAsm, fig.cap=CAPTION}
-plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
+plot_map(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
   col.regions = DNAcols,
   panel = panel.2dsmoother, args = list(span = 0.05)
 )
@@ -701,7 +701,7 @@ CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: om
 ```
 
 ```{r DNAmissing, fig.cap=CAPTION}
-plotmap(tmp, col.regions = DNAcols)
+plot_map(tmp, col.regions = DNAcols)
 ```
 
 
@@ -711,7 +711,7 @@ CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: De
 ```
 
 ```{r DNAvoronoi, fig.cap=CAPTION}
-plotmap(tmp,
+plot_map(tmp,
   col.regions = DNAcols,
   panel = panel.voronoi, pch = 19, col = "black", cex = 0.1
 )
