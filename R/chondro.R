@@ -28,13 +28,13 @@
 #' chondro <- chondro - quantile(chondro, 0.05)
 #'
 #' cols <- c("dark blue", "orange", "#C02020")
-#' plotmap(chondro, clusters ~ x * y, col.regions = cols)
+#' plot_map(chondro, clusters ~ x * y, col.regions = cols)
 #'
 #' cluster.means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
 #' plot(cluster.means, stacked = ".aggregate", fill = ".aggregate", col = cols)
 #'
 #' ## plot nucleic acid bands
-#' plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
+#' plot_map(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
 #'   col.regions = colorRampPalette(c("white", "gold", "dark green"), space = "Lab")(20)
 #' )
 NULL
